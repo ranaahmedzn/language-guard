@@ -3,9 +3,19 @@ import './Navbar.css'
 import Container from "../../Container/Container";
 import logo from "../../../assets/logo.png"
 import { FaEnvelope, FaFacebook, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhone, FaTwitter } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 
 const Navbar = () => {
+    const {user, signOutUser} = useContext(AuthContext)
+
+    const handleSignOut = () => {
+        signOutUser()
+        .then(() => alert('Sign out successful!'))
+        .then(error => console.log(error))
+    }
+
     return (
         <header className="bg-white text-gray-600 shadow-lg">
             <Container>
@@ -41,7 +51,11 @@ const Navbar = () => {
                         <NavLink to="/classes" className="default">Classes</NavLink>
                         <NavLink to="/contact" className="default">Contact</NavLink>
                     </nav>
-                    <Link to="/login"><button type="submit" className="primary-btn">Login</button></Link>
+                    {/* TODO: display user profile image and a tooltip when hover profile image */}
+                    {
+                        user ? <button onClick={handleSignOut} type="submit" className="primary-btn">Sign out</button>
+                        : <Link to="/login"><button type="submit" className="primary-btn">Login</button></Link>
+                    }
                 </div>
             </Container>
         </header>

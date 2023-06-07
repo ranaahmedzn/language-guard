@@ -1,28 +1,33 @@
 import { useForm } from "react-hook-form";
 import Container from "../../components/Container/Container";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
-    const {signInUser} = useContext(AuthContext)
+    const { signInUser } = useContext(AuthContext)
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(data)
 
         signInUser(data.email, data.password)
-        .then(result => {
-            const user = result.user;
-            console.log(user)
-            reset()
-            alert("Login successful!")
-        })
-        .catch(error => {
-            console.log(error)
-            alert(error.message)
-        })
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                reset()
+                alert("Login successful!")
+                navigate(from, {replace: true})
+            })
+            .catch(error => {
+                console.log(error)
+                alert(error.message)
+            })
     };
 
     return (
