@@ -3,6 +3,7 @@ import Container from "../../components/Container/Container";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
     const {signInUser} = useContext(AuthContext)
@@ -43,6 +44,7 @@ const Login = () => {
                         <button type="submit" className="primary-btn">Login</button>
                     </form>
                     <p className="mt-5">Don&apos;t have an account? <Link to="/signup" className="font-medium underline">Sign up</Link></p>
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
         </Container>

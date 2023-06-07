@@ -3,9 +3,10 @@ import Container from '../../components/Container/Container';
 import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
+import SocialLogin from '../../components/Shared/SocialLogin/SocialLogin';
 
 const SignUp = () => {
-    const {createUser} = useContext(AuthContext)
+    const {createUser, updateUserProfile} = useContext(AuthContext)
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -17,6 +18,10 @@ const SignUp = () => {
             console.log(user)
             reset()
             alert("Sign up successful!")
+
+            updateUserProfile(data.name, data.photoUrl)
+            .then(()=> alert("Profile updated"))
+            .catch((error => console.log(error)))
         })
         .catch(error => {
             console.log(error)
@@ -58,6 +63,7 @@ const SignUp = () => {
                         <button type="submit" className="primary-btn">Sign Up</button>
                     </form>
                     <p className="mt-5">Already have an account? <Link to="/login" className="font-medium underline">Login</Link></p>
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
         </Container>
