@@ -7,3 +7,6 @@
 .default{
     @apply mr-8 border-b-2 border-transparent hover:border-[#FEBC1E] hover:text-gray-900 font-medium transition-all duration-300
 }
+.primary-btn{
+    @apply text-black bg-[#FEBC1E] font-medium rounded-full text-sm px-7 py-3
+}

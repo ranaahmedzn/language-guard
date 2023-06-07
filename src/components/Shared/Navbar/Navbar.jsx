@@ -7,7 +7,7 @@ import { FaEnvelope, FaFacebook, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhon
 
 const Navbar = () => {
     return (
-        <header className="bg-white text-gray-600">
+        <header className="bg-white text-gray-600 shadow-lg">
             <Container>
                 <div className="flex gap-5 py-3">
                     <p className="flex items-center gap-2 text-sm">
@@ -41,7 +41,7 @@ const Navbar = () => {
                         <NavLink to="/classes" className="default">Classes</NavLink>
                         <NavLink to="/contact" className="default">Contact</NavLink>
                     </nav>
-                    <button type="submit" className="flex items-center gap-1 text-black bg-[#FEBC1E] font-medium rounded-full text-sm px-7 py-3">Login</button>
+                    <Link to="/login"><button type="submit" className="primary-btn">Login</button></Link>
                 </div>
             </Container>
         </header>
