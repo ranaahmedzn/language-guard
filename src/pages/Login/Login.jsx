@@ -1,18 +1,20 @@
 import { useForm } from "react-hook-form";
 import Container from "../../components/Container/Container";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
+    const [show, setShow] = useState(false)
     const { signInUser } = useContext(AuthContext)
 
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         console.log(data)
 
@@ -43,8 +45,15 @@ const Login = () => {
                                     <div className="mb-5">
                                         <input type="email" {...register("email", { required: true })} id="email" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter email" required />
                                     </div>
-                                    <div className="mb-5">
-                                        <input type="password" {...register("password", { required: true })} id="password" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter password" required />
+                                    <div className="mb-5 relative">
+                                        <input type={show ? "text" : "password"} {...register("password", { required: true })} id="password" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter password" required />
+
+                                        <span onClick={() => setShow(!show)} className='absolute top-3 right-3 cursor-pointer'>
+                                            {
+                                                show ? <FaEyeSlash />
+                                                    : <FaEye />
+                                            }
+                                        </span>
                                     </div>
                                     <div className="flex items-start mb-6 -mt-3">
                                         <label htmlFor="remember" className="text-sm font-medium text-gray-900 dark:text-gray-300">Forgot Password?</label>

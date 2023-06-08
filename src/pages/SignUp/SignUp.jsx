@@ -4,15 +4,22 @@ import { useForm } from 'react-hook-form';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import SocialLogin from '../../components/Shared/SocialLogin/SocialLogin';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const SignUp = () => {
     const [checked, setChecked] = useState(true)
+    const [show, setShow] = useState(false)
     const { createUser, updateUserProfile, signOutUser } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(data)
+
+        if(data.password !== data.confirmPassword){
+            alert("Oops, Confirm password didn't matched!")
+            return;
+        }
 
         createUser(data.email, data.password)
             .then(result => {
@@ -55,8 +62,20 @@ const SignUp = () => {
                                 <div className="mb-5">
                                     <input type="email" {...register("email", { required: true })} id="email" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter email" required />
                                 </div>
-                                <div className="mb-5">
-                                    <input type="password" {...register("password", { required: true })} id="password" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter password" required />
+                                <div className="mb-5 relative">
+                                    <input type={show ? "text" : "password"} {...register("password", { required: true, minLength: 6, pattern: /(?=.*\d)(?=.*[A-Z])(?=.*[!#$%&? "])/ })} id="password" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter password" required />
+
+
+                                    {errors.password?.type === 'minLength' && <p className='text-sm font-medium text-rose-500 mt-2'>Password must be 6 characters or longer</p>}
+
+                                    {errors.password?.type === 'pattern' && <p className='text-sm font-medium text-rose-500 mt-2'>Password should contain at least one digit, one uppercase letter and one special character!</p>}
+
+                                    <span onClick={() => setShow(!show)} className='absolute top-3 right-3 cursor-pointer'>
+                                    {
+                                        show ? <FaEyeSlash />
+                                            : <FaEye />
+                                    }
+                                    </span>
                                 </div>
                                 <div className="mb-5">
                                     <input type="password" {...register("confirmPassword", { required: true })} id="confirmPassword" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Confirm password" required />
