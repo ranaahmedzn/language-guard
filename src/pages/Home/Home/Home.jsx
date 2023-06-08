@@ -1,5 +1,6 @@
 import Container from "../../../components/Container/Container";
 import Banner from "../Banner/Banner";
+import Contact from "../Contact/Contact";
 import FeedbackSection from "../FeedbackSection/FeedbackSection";
 import PopularClasses from "../PopularClasses/PopularClasses";
 import PopularInstructors from "../PopularInstructors/PopularInstructors";
@@ -12,6 +13,7 @@ const Home = () => {
                 <PopularClasses />
                 <PopularInstructors />
             </Container>
+            <Contact />
             <FeedbackSection />
         </div>
     );
