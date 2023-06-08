@@ -32,13 +32,14 @@ const Login = () => {
             })
     };
 
+    //TODO: design aktu change korte hobe
     return (
         <div className="bg-neutral-200">
             <Container>
                 <div className="py-28">
                     <div className="mx-auto min-h-[614px] w-2/3 flex rounded-lg shadow-xl overflow-hidden">
                         <div className="w-1/2 p-10 bg-white flex justify-center items-center flex-col">
-                            <div>
+                            <div className="w-full">
                                 <h3 className="text-3xl font-bold text-center mb-6">Login</h3>
                                 <SocialLogin></SocialLogin>
                                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -58,7 +59,7 @@ const Login = () => {
                                     <div className="flex items-start mb-6 -mt-3">
                                         <label htmlFor="remember" className="text-sm font-medium text-gray-900 dark:text-gray-300">Forgot Password?</label>
                                     </div>
-                                    <div className="text-center"><button type="submit" className="primary-btn">Login</button></div>
+                                    <div className="text-center"><button type="submit" className="primary-btn py-3">Login</button></div>
                                 </form>
                             </div>
                         </div>

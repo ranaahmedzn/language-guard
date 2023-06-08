@@ -1,9 +1,8 @@
+import Banner from "../Banner/Banner";
 
 const Home = () => {
     return (
-        <div>
-            <div className="h-screen"></div>
-        </div>
+        <Banner />
     );
 };
 

@@ -89,7 +89,7 @@ const SignUp = () => {
                                     </div>
                                     <label htmlFor="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
                                 </div>
-                                <div className="text-center"><button type="submit" className="primary-btn">Sign Up</button></div>
+                                <div className="text-center"><button type="submit" className="primary-btn py-3">Sign Up</button></div>
                             </form>
                         </div>
 

@@ -17,7 +17,7 @@ const Navbar = () => {
     }
 
     return (
-        <header className="bg-white text-gray-600 shadow-lg">
+        <header className="bg-white text-gray-600 shadow">
             <Container>
                 <div className="flex gap-5 py-3">
                     <p className="flex items-center gap-2 text-sm">
@@ -53,8 +53,8 @@ const Navbar = () => {
                     </nav>
                     {/* TODO: display user profile image and a tooltip when hover profile image */}
                     {
-                        user ? <button onClick={handleSignOut} type="submit" className="primary-btn">Sign out</button>
-                        : <Link to="/login"><button type="submit" className="primary-btn">Login</button></Link>
+                        user ? <button onClick={handleSignOut} type="submit" className="primary-btn py-2.5">Sign out</button>
+                        : <Link to="/login"><button type="submit" className="primary-btn py-2.5">Login</button></Link>
                     }
                 </div>
             </Container>
