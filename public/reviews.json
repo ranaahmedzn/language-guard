@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Sarah Smith",
+    "email": "sarahsmith25@yahoo.com",
+    "details": "I had an amazing experience at Language Guard's summer camp. The Global Language Academy provides a supportive and enriching environment where I was able to develop my language skills while making lifelong friendships. The instructors were knowledgeable and passionate, making the learning process enjoyable. I highly recommend Language Guard to anyone looking for a language learning program.",
+    "rating": 4.8
+  },
+  {
+    "name": "David Wilson",
+    "email": "david.wilson@gmail.com",
+    "details": "I had a fantastic time at Language Guard's Polyglot Adventures summer camp. The program offered an exciting and dynamic language learning experience for adventurous students like me. The combination of language lessons and outdoor activities created an immersive and stimulating environment for language acquisition. The instructors were supportive and the curriculum was engaging. Language Guard exceeded my expectations!",
+    "rating": 4.2
+  },
+  {
+    "name": "Robert Johnson",
+    "email": "robert.johnson@gmail.com",
+    "details": "Language Guard's Language World program provided me with an immersive language learning experience that was both fun and effective. The experienced teachers and engaging curriculum made learning enjoyable. The summer camp was well-organized, and I had the opportunity to interact with students from different cultures. I would definitely recommend Language Guard's Language World to anyone looking to learn a new language.",
+    "rating": 4.5
+  },
+  {
+    "name": "Michael Anderson",
+    "email": "michaeladerson85@gmail.com",
+    "details": "Speak Easy Language Camp offered me an intensive language course in a relaxed and friendly atmosphere. The experienced instructors used innovative teaching methods that helped boost my confidence in speaking and understanding foreign languages. The camp's curriculum was well-structured, and I made significant progress during my time there. I am grateful to Language Guard for this valuable learning experience.",
+    "rating": 4.3
+  },
+  {
+    "name": "Emily Thompson",
+    "email": "emily.thomson@gmail.com",
+    "details": "LingoCamp provided me with a unique language immersion experience. The interactive classes, cultural activities, and excursions allowed me to develop language proficiency while exploring different cultures. The instructors were knowledgeable and supportive, and the curriculum was well-designed. I would highly recommend Language Guard's LingoCamp to anyone seeking a memorable language learning adventure.",
+    "rating": 4.6
+  }
+]
