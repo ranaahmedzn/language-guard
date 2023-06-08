@@ -1,72 +1,90 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Container from '../../components/Container/Container';
 import { useForm } from 'react-hook-form';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import SocialLogin from '../../components/Shared/SocialLogin/SocialLogin';
 
 const SignUp = () => {
-    const {createUser, updateUserProfile} = useContext(AuthContext)
+    const [checked, setChecked] = useState(true)
+    const { createUser, updateUserProfile, signOutUser } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(data)
 
         createUser(data.email, data.password)
-        .then(result => {
-            const user = result.user;
-            console.log(user)
-            reset()
-            alert("Sign up successful!")
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                reset()
+                alert("Sign up successful!")
 
-            updateUserProfile(data.name, data.photoUrl)
-            .then(()=> alert("Profile updated"))
-            .catch((error => console.log(error)))
-        })
-        .catch(error => {
-            console.log(error)
-            alert(error.message)
-        })
+                updateUserProfile(data.name, data.photoUrl)
+                    .then(() => alert("Profile updated"))
+                    .catch((error => console.log(error)))
+
+                if (!data.remember) {
+                    signOutUser()
+                        .then(() => {
+                            navigate("/login")
+                            alert("Sign out from sign up page")
+                        })
+                        .catch(error => console.log(error))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+                alert(error.message)
+            })
     };
 
     return (
-        <Container>
-            <div className="py-20">
-                <div className="mx-auto w-1/2">
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className='flex gap-4'>
-                            <div className="mb-6 w-1/2">
-                                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
-                                <input type="text" {...register("name", { required: true })} id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter name" required />
-                            </div>
-                            <div className="mb-6 w-1/2">
-                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                                <input type="email" {...register("email", { required: true })} id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter email" required />
-                            </div>
+        <div className='bg-neutral-200'>
+            <Container>
+                <div className="py-28">
+                    <div className="mx-auto w-2/3 flex flex-row-reverse rounded-lg shadow-xl overflow-hidden">
+                        <div className="w-1/2 p-10 bg-white">
+                            <h3 className="text-3xl font-bold text-center mb-6">Sign Up</h3>
+                            <SocialLogin></SocialLogin>
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                                <div className="mb-5">
+                                    <input type="name" {...register("name", { required: true })} id="name" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter name" required />
+                                </div>
+                                <div className="mb-5">
+                                    <input type="email" {...register("email", { required: true })} id="email" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter email" required />
+                                </div>
+                                <div className="mb-5">
+                                    <input type="password" {...register("password", { required: true })} id="password" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter password" required />
+                                </div>
+                                <div className="mb-5">
+                                    <input type="password" {...register("confirmPassword", { required: true })} id="confirmPassword" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Confirm password" required />
+                                </div>
+                                <div className="mb-5">
+                                    <input type="url" {...register("photoUrl", { required: true })} id="photoUrl" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Photo URL" required />
+                                </div>
+                                <div className="flex items-start mb-6 -mt-2">
+                                    <div className="flex items-center h-5">
+                                        <input id="remember" type="checkbox" {...register("remember")} onClick={() => setChecked(!checked)} checked={checked} className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 cursor-pointer" />
+                                    </div>
+                                    <label htmlFor="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
+                                </div>
+                                <div className="text-center"><button type="submit" className="primary-btn">Sign Up</button></div>
+                            </form>
                         </div>
 
-                        <div className='flex gap-4'>
-                            <div className="mb-6 w-1/2">
-                                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
-                                <input type="password" {...register("password", { required: true })} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter password" required />
-                            </div>
-                            <div className="mb-6 w-1/2">
-                                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
-                                <input type="password" {...register("confirmPassword", { required: true })} id="confirmPassword" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter password" required />
+                        <div className="w-1/2 bg-red-500 text-white p-10">
+                            <div className="h-full flex flex-col justify-center items-center text-center space-y-4">
+                                <h3 className="text-3xl font-bold">Welcome, Back!</h3>
+                                <p>To keep connected with us please login with your personal info</p>
+                                <Link to="/login"><button className="outline-btn">Login</button></Link>
                             </div>
                         </div>
-                        <div className="mb-6 w-full">
-                                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo URL</label>
-                                <input type="url" {...register("photoUrl", { required: true })} id="photo" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter photo url" required />
-                            </div>
-                        
-                        <button type="submit" className="primary-btn">Sign Up</button>
-                    </form>
-                    <p className="mt-5">Already have an account? <Link to="/login" className="font-medium underline">Login</Link></p>
-                    <SocialLogin></SocialLogin>
+                    </div>
                 </div>
-            </div>
-        </Container>
+            </Container>
+        </div>
     );
 };
 
