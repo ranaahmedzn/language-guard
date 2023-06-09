@@ -12,7 +12,7 @@ const Instructors = () => {
             return res.data;
         }
     })
-
+    console.log(instructors)
     return (
         <section className="text-gray-600 py-24">
             <Container>
@@ -27,10 +27,15 @@ const Instructors = () => {
                             <h2 className="text-gray-900 text-xl font-medium">{instructor.name}</h2>
                             <p className="leading-relaxed text-sm font-medium mb-3">{instructor.email}</p>
                             <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                            <button className="mt-3 text-[#FEBC1E] inline-flex gap-2 items-center">
-                                <span className="font-medium">See Classes</span>
-                                <FaArrowRight />
-                            </button>
+
+                            <div className="flex items-center gap-3 mt-4">
+                                <span className="bg-red-100 text-red-800 text-sm font-medium px-4 py-2 rounded dark:bg-red-900 dark:text-red-300">{instructor.classNumbers}+ Classes</span>
+                                <button className="bg-yellow-100 text-yellow-800 text-sm font-medium px-4 py-2 rounded inline-flex gap-2 items-center">
+                                    <span className="font-medium">See Classes</span>
+                                    <FaArrowRight />
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 })}

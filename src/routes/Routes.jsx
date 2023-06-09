@@ -3,8 +3,9 @@ import Login from "../pages/Login/Login";
 import Main from "../layouts/Main";
 import Home from "../pages/Home/Home/Home";
 import SignUp from "../pages/SignUp/SignUp";
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 import Instructors from "../pages/Instructors/Instructors";
+import Classes from "../pages/Classes/Classes";
 
 const router = createBrowserRouter([
     {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/classes",
-                element: <PrivateRoute><h2 className="text-3xl font-bold text-center">Classes page</h2></PrivateRoute> //TODO: add loading page
+                element: <Classes />
             },
             {
                 path: "/login",
