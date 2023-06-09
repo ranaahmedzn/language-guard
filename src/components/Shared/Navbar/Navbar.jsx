@@ -8,13 +8,17 @@ import { AuthContext } from "../../../providers/AuthProvider";
 
 
 const Navbar = () => {
-    const {user, signOutUser} = useContext(AuthContext)
+    const { user, signOutUser } = useContext(AuthContext)
 
     const handleSignOut = () => {
         signOutUser()
-        .then(() => alert('Sign out successful!'))
-        .then(error => console.log(error))
+            .then(() => alert('Sign out successful!'))
+            .then(error => console.log(error))
     }
+
+    //TODO: load isStudent and isAdmin data from server
+    const isStudent = true;
+    const isAdmin = false;
 
     return (
         <header className="bg-white text-gray-600 shadow">
@@ -50,11 +54,20 @@ const Navbar = () => {
                         <NavLink to="/instructors" className="default">Instructors</NavLink>
                         <NavLink to="/classes" className="default">Classes</NavLink>
                         <a href="/#contact" className="default">Contact</a>
+                        {
+                            user && (isStudent ? (
+                                <NavLink to="/dashboard" className="default">Dashboard</NavLink>
+                            ) : isAdmin ? (
+                                <NavLink to="/dashboard" className="default">Dashboard</NavLink>
+                            ) : (
+                                <NavLink to="/dashboard" className="default">Dashboard</NavLink>
+                            ))
+                        }
                     </nav>
                     {/* TODO: display user profile image and a tooltip when hover profile image */}
                     {
                         user ? <button onClick={handleSignOut} type="submit" className="primary-btn py-2.5">Sign out</button>
-                        : <Link to="/login"><button type="submit" className="primary-btn py-2.5">Login</button></Link>
+                            : <Link to="/login"><button type="submit" className="primary-btn py-2.5">Login</button></Link>
                     }
                 </div>
             </Container>
