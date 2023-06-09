@@ -4,10 +4,13 @@ import { FaSpinner, FaUsers } from "react-icons/fa";
 import { MdLibraryAdd } from "react-icons/md";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
+import useBookings from "../../hooks/useBookings";
 
 const SingleClass = ({ singleClass }) => {
     const [loading, setLoading] = useState(false)
     const { user } = useContext(AuthContext)
+    const [, refetch] = useBookings()
+
     //TODO: load isStudent base data from server
     const isStudent = true;
 
@@ -21,6 +24,7 @@ const SingleClass = ({ singleClass }) => {
             axios.post('/bookings', selectedClass)
                 .then(res => {
                     if (res.data.insertedId) {
+                        refetch()
                         setLoading(false)
                         Swal.fire(
                             'Selected!',
