@@ -1,7 +1,37 @@
+import Swal from "sweetalert2";
 import useBookings from "../../../hooks/useBookings";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const MySelectedClasses = () => {
     const [bookings, refetch] = useBookings()
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete this from here?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes delete'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`/bookings/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount) {
+                            refetch()
+                            Swal.fire(
+                                'Deleted!',
+                                'Successfully deleted.',
+                                'success'
+                            )
+                        }
+                    })
+                    .catch(error => console.log(error))
+            }
+        })
+    }
 
     return (
         <div>
@@ -53,12 +83,14 @@ const MySelectedClasses = () => {
                                 </td>
                                 <td className="px-6 py-4">
                                     <div className="flex items-center gap-3">
-                                        <button className="bg-red-100 text-red-800 text-sm font-medium px-4 py-2 rounded inline-flex gap-2 items-center">
+                                        <button onClick={() => handleDelete(booking._id)} className="bg-red-100 text-red-800 text-sm font-medium px-4 py-2 rounded inline-flex gap-2 items-center">
                                             Delete
                                         </button>
-                                        <button className="bg-yellow-100 text-yellow-800 text-sm font-medium px-4 py-2 rounded inline-flex gap-2 items-center">
-                                            Payment
-                                        </button>
+                                        <Link to='/dashboard/payment'>
+                                            <button className="bg-yellow-100 text-yellow-800 text-sm font-medium px-4 py-2 rounded inline-flex gap-2 items-center">
+                                                Payment
+                                            </button>
+                                        </Link>
                                     </div>
                                 </td>
                             </tr>)
