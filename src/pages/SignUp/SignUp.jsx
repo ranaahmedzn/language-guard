@@ -57,13 +57,13 @@ const SignUp = () => {
                             <SocialLogin></SocialLogin>
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <div className="mb-5">
-                                    <input type="name" {...register("name", { required: true })} id="name" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter name" required />
+                                    <input type="name" {...register("name", { required: true })} id="name" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-[#FEBC1E] focus:outline-none block w-full p-2.5" placeholder="Enter name" required />
                                 </div>
                                 <div className="mb-5">
-                                    <input type="email" {...register("email", { required: true })} id="email" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter email" required />
+                                    <input type="email" {...register("email", { required: true })} id="email" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter email" required />
                                 </div>
                                 <div className="mb-5 relative">
-                                    <input type={show ? "text" : "password"} {...register("password", { required: true, minLength: 6, pattern: /(?=.*\d)(?=.*[A-Z])(?=.*[!#$%&? "])/ })} id="password" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter password" required />
+                                    <input type={show ? "text" : "password"} {...register("password", { required: true, minLength: 6, pattern: /(?=.*\d)(?=.*[A-Z])(?=.*[!#$%&? "])/ })} id="password" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter password" required />
 
 
                                     {errors.password?.type === 'minLength' && <p className='text-sm font-medium text-rose-500 mt-2'>Password must be 6 characters or longer</p>}
@@ -78,10 +78,10 @@ const SignUp = () => {
                                     </span>
                                 </div>
                                 <div className="mb-5">
-                                    <input type="password" {...register("confirmPassword", { required: true })} id="confirmPassword" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Confirm password" required />
+                                    <input type="password" {...register("confirmPassword", { required: true })} id="confirmPassword" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Confirm password" required />
                                 </div>
                                 <div className="mb-5">
-                                    <input type="url" {...register("photoUrl", { required: true })} id="photoUrl" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Photo URL" required />
+                                    <input type="url" {...register("photoUrl", { required: true })} id="photoUrl" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Photo URL" required />
                                 </div>
                                 <div className="flex items-start mb-6 -mt-2">
                                     <div className="flex items-center h-5">

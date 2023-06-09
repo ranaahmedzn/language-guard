@@ -44,10 +44,10 @@ const Login = () => {
                                 <SocialLogin></SocialLogin>
                                 <form onSubmit={handleSubmit(onSubmit)}>
                                     <div className="mb-5">
-                                        <input type="email" {...register("email", { required: true })} id="email" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter email" required />
+                                        <input type="email" {...register("email", { required: true })} id="email" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter email" required />
                                     </div>
                                     <div className="mb-5 relative">
-                                        <input type={show ? "text" : "password"} {...register("password", { required: true })} id="password" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter password" required />
+                                        <input type={show ? "text" : "password"} {...register("password", { required: true })} id="password" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Enter password" required />
 
                                         <span onClick={() => setShow(!show)} className='absolute top-3 right-3 cursor-pointer'>
                                             {

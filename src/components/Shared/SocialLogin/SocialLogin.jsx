@@ -1,9 +1,13 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { FaGoogle, FaTwitter } from "react-icons/fa";
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const SocialLogin = () => {
     const {googleSingIn, twitterSingIn} = useContext(AuthContext)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const handleGoogleSignIn = () => {
         googleSingIn()
@@ -11,6 +15,7 @@ const SocialLogin = () => {
             const user = result.user;
             console.log(user)
             alert("Successfully login with google!")
+            navigate(from, {replace: true})
         })
         .catch(error => console.log(error))
     }
@@ -21,6 +26,7 @@ const SocialLogin = () => {
             const user = result.user;
             console.log(user)
             alert("Successfully login with Twitter!")
+            navigate(from, {replace: true})
         })
         .catch(error => console.log(error))
     }

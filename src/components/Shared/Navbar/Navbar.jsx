@@ -49,7 +49,7 @@ const Navbar = () => {
                         <NavLink to="/" className="default">Home</NavLink>
                         <NavLink to="/instructors" className="default">Instructors</NavLink>
                         <NavLink to="/classes" className="default">Classes</NavLink>
-                        <a href="#contact" className="default">Contact</a>
+                        <a href="/#contact" className="default">Contact</a>
                     </nav>
                     {/* TODO: display user profile image and a tooltip when hover profile image */}
                     {
