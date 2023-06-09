@@ -5,6 +5,7 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import SocialLogin from '../../components/Shared/SocialLogin/SocialLogin';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import axios from 'axios';
 
 const SignUp = () => {
     const [checked, setChecked] = useState(true)
@@ -16,10 +17,11 @@ const SignUp = () => {
     const onSubmit = data => {
         console.log(data)
 
-        if(data.password !== data.confirmPassword){
+        if (data.password !== data.confirmPassword) {
             alert("Oops, Confirm password didn't matched!")
             return;
         }
+        const newUser = { name: data.name, email: data.email, role: 'student', image: data.photoUrl }
 
         createUser(data.email, data.password)
             .then(result => {
@@ -31,6 +33,13 @@ const SignUp = () => {
                 updateUserProfile(data.name, data.photoUrl)
                     .then(() => alert("Profile updated"))
                     .catch((error => console.log(error)))
+
+                // call a post api to send users to the server 
+                axios.post('/users', newUser)
+                .then(res => {
+                    console.log(res.data)
+                })
+                .catch(error => console.log(error))
 
                 if (!data.remember) {
                     signOutUser()
@@ -71,10 +80,10 @@ const SignUp = () => {
                                     {errors.password?.type === 'pattern' && <p className='text-sm font-medium text-rose-500 mt-2'>Password should contain at least one digit, one uppercase letter and one special character!</p>}
 
                                     <span onClick={() => setShow(!show)} className='absolute top-3 right-3 cursor-pointer'>
-                                    {
-                                        show ? <FaEyeSlash />
-                                            : <FaEye />
-                                    }
+                                        {
+                                            show ? <FaEyeSlash />
+                                                : <FaEye />
+                                        }
                                     </span>
                                 </div>
                                 <div className="mb-5">

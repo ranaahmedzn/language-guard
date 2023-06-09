@@ -16,3 +16,6 @@
 .slide-nav-btn{
     @apply text-black text-2xl p-2 rounded-full hover:bg-[#FEBC1E] transition-all duration-300
 }
+.dashboard-menu-item{
+    @apply hover:bg-gray-500 font-medium hover:bg-opacity-20 hover:text-blue-600 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer transition-all duration-300
+}

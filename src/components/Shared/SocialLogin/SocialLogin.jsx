@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { FaGoogle, FaTwitter } from "react-icons/fa";
 import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const SocialLogin = () => {
     const {googleSingIn, twitterSingIn} = useContext(AuthContext)
@@ -15,6 +16,15 @@ const SocialLogin = () => {
             const user = result.user;
             console.log(user)
             alert("Successfully login with google!")
+
+            const newUser = {name: user.displayName, email: user.email, role: 'student', image: user.photoURL}
+            // call a post api to send users to the server 
+            axios.post('/users', newUser)
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(error => console.log(error))
+
             navigate(from, {replace: true})
         })
         .catch(error => console.log(error))
@@ -26,6 +36,16 @@ const SocialLogin = () => {
             const user = result.user;
             console.log(user)
             alert("Successfully login with Twitter!")
+
+            // Here I created a random email with twitter username because there are no accessible email
+            const newUser = {name: user.displayName, email: `${user.reloadUserInfo.screenName}.yahoo.com`, role: 'student', image: user.photoURL}
+            // call a post api to send users to the server 
+            axios.post('/users', newUser)
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(error => console.log(error))
+
             navigate(from, {replace: true})
         })
         .catch(error => console.log(error))

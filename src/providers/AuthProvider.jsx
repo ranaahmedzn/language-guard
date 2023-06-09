@@ -1,6 +1,7 @@
 import { GoogleAuthProvider, TwitterAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext()
 
@@ -49,6 +50,17 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser)
             setLoading(false)
             console.log(currentUser)
+
+            if(currentUser){
+                axios.post('/jwt', {email: currentUser.email})
+                .then(res => {
+                    localStorage.setItem('access-token', res.data.token)
+                })
+                .catch(error => console.log(error))
+            }
+            else{
+                localStorage.removeItem('access-token')
+            }
         })
 
         return () => {

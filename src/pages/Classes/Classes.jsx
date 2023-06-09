@@ -20,7 +20,7 @@ const Classes = () => {
                     <p>Immerse Yourself in All the Exciting Classes and Expand Your Language Skills at Language Guard.</p>
                 </div>
 
-                <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                     {
                         classes.map(singleClass => <SingleClass
                         key={singleClass._id}
