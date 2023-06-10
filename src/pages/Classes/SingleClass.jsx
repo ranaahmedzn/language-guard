@@ -64,9 +64,10 @@ const SingleClass = ({ singleClass }) => {
                     <p className="leading-relaxed">Available seats: {availableSeats}</p>
                     <button onClick={handleSelectClass} disabled={!isStudent || availableSeats === 0 && true} className="primary-btn py-3 flex items-center gap-1 disabled:bg-gray-200">
                         {
-                            loading ? <span className="animate-spin"><FaSpinner size={18}/></span>
+                            loading ? <><span className="animate-spin">
+                                    <FaSpinner size={18} /></span><span>Select</span></>
                                 : <><MdLibraryAdd size={16} />
-                                    <span>Select</span></>
+                                <span>Select</span></>
                         }
                     </button>
                 </div>

@@ -17,7 +17,7 @@ const Navbar = () => {
     }
 
     //TODO: load isStudent and isAdmin data from server
-    const isStudent = true;
+    const isStudent = false;
     const isAdmin = false;
 
     return (
