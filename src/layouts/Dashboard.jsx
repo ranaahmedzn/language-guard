@@ -3,15 +3,16 @@ import logo from "../assets/logo.png"
 import useBookings from "../hooks/useBookings";
 import './Dashboard.css'
 import { FaHome } from "react-icons/fa";
+import useUserRole from "../hooks/useUserRole";
 
 const Dashboard = () => {
     // const [isOpen, setIsOpen] = useState(false)
     const [bookings] = useBookings()
 
-    // TODO: load isStudent and isAdmin data from server
-    const isStudent = false;
-    const isInstructor = false;
-    const isAdmin = true;
+    const [role] = useUserRole()
+    // const isStudent = false;
+    // const isInstructor = false;
+    // const isAdmin = true;
 
     return (
         <div className="w-full h-screen overflow-x-auto">
@@ -29,7 +30,7 @@ const Dashboard = () => {
                         <div className="pl-2 pt-5 pr-8">
                             <ul className="space-y-2 dashboard-menu">
                                 {
-                                    isStudent && <>
+                                    role.isStudent && <>
                                         <li>
                                             <NavLink to='/dashboard/mySelectedClasses' className="dashboard-menu-item">
                                                 <span className="flex items-center space-x-2">
@@ -52,7 +53,7 @@ const Dashboard = () => {
                                     </>
                                 }
                                 {
-                                    isInstructor && <>
+                                    role.isInstructor && <>
                                         <li>
                                             <NavLink to='/dashboard/addClass' className="dashboard-menu-item">
                                                 <span>Add a Class</span>
@@ -67,7 +68,7 @@ const Dashboard = () => {
                                 }
 
                                 {
-                                    isAdmin && <>
+                                    role.isAdmin && <>
                                         <li>
                                             <NavLink to='/dashboard/manageClasses' className="dashboard-menu-item">
                                                 <span>Manage Classes</span>

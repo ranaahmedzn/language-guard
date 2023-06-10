@@ -92,9 +92,9 @@ const SignUp = () => {
                                 <div className="mb-5">
                                     <input type="url" {...register("photoUrl", { required: true })} id="photoUrl" className="bg-neutral-200 border-0 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-[#FEBC1E] block w-full p-2.5" placeholder="Photo URL" required />
                                 </div>
-                                <div className="flex items-start mb-6 -mt-2">
-                                    <div className="flex items-center h-5">
-                                        <input id="remember" type="checkbox" {...register("remember")} onClick={() => setChecked(!checked)} checked={checked} className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 cursor-pointer" />
+                                <div className="flex items-center mb-6 -mt-2">
+                                    <div className="flex items-center">
+                                        <input id="remember" type="checkbox" {...register("remember")} onClick={() => setChecked(!checked)} checked={checked} className="w-4 h-4 m-0 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 cursor-pointer" />
                                     </div>
                                     <label htmlFor="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
                                 </div>
