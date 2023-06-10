@@ -22,7 +22,7 @@ const Dashboard = () => {
             <div className="hidden md:block">
                 <div className="flex">
                     {/* dashboard sidebar */}
-                    <div className="relative w-72 h-screen pt-5 px-4 bg-yellow-200">
+                    <div className="sticky top-0 w-72 h-screen pt-5 px-4 bg-yellow-200">
                         <Link to="/" className="flex font-medium items-center text-gray-900">
                             <img src={logo} width="50" alt="" />
                             <span className="ml-3 text-xl">Language Guard</span>
@@ -90,7 +90,7 @@ const Dashboard = () => {
                     </div>
 
                     {/* dashboard content */}
-                    <div className="flex-grow my-10 mx-12">
+                    <div className="flex-grow my-8 mx-12">
                         <Outlet />
                     </div>
                 </div>

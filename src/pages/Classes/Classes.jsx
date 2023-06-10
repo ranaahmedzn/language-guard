@@ -1,16 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import Container from "../../components/Container/Container";
 import SingleClass from "./SingleClass";
+import useClasses from "../../hooks/useClasses";
 
 const Classes = () => {
-    const { data: classes = [] } = useQuery({
-        queryKey: ['classes'],
-        queryFn: async () => {
-            const res = await axios(`/classes`);
-            return res.data;
-        }
-    })
+    const [classes] = useClasses()
 
     return (
         <section className="my-16">
