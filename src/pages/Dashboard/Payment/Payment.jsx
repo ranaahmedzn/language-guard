@@ -1,7 +1,31 @@
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Elements } from "@stripe/react-stripe-js";
+import PaymentForm from "./PaymentForm";
+import { loadStripe } from "@stripe/stripe-js";
+
 const Payment = () => {
+    const { id } = useParams()
+    const [axiosSecure] = useAxiosSecure()
+
+    const { data: booking = {} } = useQuery({
+        queryKey: ['booking'],
+        queryFn: async () => {
+            const res = await axiosSecure(`/bookings/${id}`)
+            return res.data
+        },
+    })
+    const price = parseInt(booking?.price);
+
+    const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_PK)
+
     return (
         <div>
-            <h2 className="text-center font-bold text-3xl">This is Payment page</h2>
+            <h2 className="font-bold text-2xl mb-6">Your course Price: ${price}</h2>
+            <Elements stripe={stripePromise}>
+                <PaymentForm price={price} bookingId={id} classId={booking.classId} />
+            </Elements>
         </div>
     );
 };

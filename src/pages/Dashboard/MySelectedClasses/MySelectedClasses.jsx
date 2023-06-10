@@ -1,10 +1,11 @@
 import Swal from "sweetalert2";
 import useBookings from "../../../hooks/useBookings";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MySelectedClasses = () => {
     const [bookings, refetch] = useBookings()
+    const [axiosSecure] = useAxiosSecure()
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -17,7 +18,7 @@ const MySelectedClasses = () => {
             confirmButtonText: 'Yes delete'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`/bookings/${id}`)
+                axiosSecure.delete(`/bookings/${id}`)
                     .then(res => {
                         if (res.data.deletedCount) {
                             refetch()
@@ -86,7 +87,7 @@ const MySelectedClasses = () => {
                                         <button onClick={() => handleDelete(booking._id)} className="bg-red-100 text-red-800 text-sm font-medium px-4 py-2 rounded inline-flex gap-2 items-center">
                                             Delete
                                         </button>
-                                        <Link to='/dashboard/payment'>
+                                        <Link to={`/dashboard/payment/${booking._id}`}>
                                             <button className="bg-yellow-100 text-yellow-800 text-sm font-medium px-4 py-2 rounded inline-flex gap-2 items-center">
                                                 Payment
                                             </button>

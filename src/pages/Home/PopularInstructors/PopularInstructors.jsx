@@ -21,7 +21,7 @@ const PopularInstructors = () => {
             <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {
                     popularInstructors.map(instructor => <Instructor
-                    key={instructor}
+                    key={instructor._id}
                     instructor={instructor}
                     ></Instructor>)
                 }

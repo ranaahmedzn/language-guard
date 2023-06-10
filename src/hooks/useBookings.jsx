@@ -1,20 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { useContext } from "react";
-import { AuthContext } from "../providers/AuthProvider";
+import useAuthInfo from "./useAuthInfo";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useBookings = () => {
-    //TODO: create useAuth & axiosSecure hook
-    const {user, loading} = useContext(AuthContext)
-    const token = localStorage.getItem('access-token')
+    const { user, loading } = useAuthInfo()
+    const [axiosSecure] = useAxiosSecure()
 
     const { data: bookings = [], refetch } = useQuery({
         queryKey: ['bookings', user?.email],
         enabled: !loading,
         queryFn: async () => {
-            const res = await axios(`/bookings?email=${user?.email}`, {
-                headers: {Authorization: `Bearer ${token}`}
-            })
+            const res = await axiosSecure(`/bookings?email=${user?.email}`)
             return res.data
         },
     })
