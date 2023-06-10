@@ -1,15 +1,16 @@
-import axios from "axios";
 import { useContext, useState } from "react";
 import { FaSpinner, FaUsers } from "react-icons/fa";
 import { MdLibraryAdd } from "react-icons/md";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 import useBookings from "../../hooks/useBookings";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SingleClass = ({ singleClass }) => {
     const [loading, setLoading] = useState(false)
     const { user } = useContext(AuthContext)
     const [, refetch] = useBookings()
+    const [axiosSecure] = useAxiosSecure()
 
     //TODO: load isStudent base data from server
     const isStudent = true;
@@ -21,7 +22,7 @@ const SingleClass = ({ singleClass }) => {
 
         if (user && isStudent) {
             setLoading(true)
-            axios.post('/bookings', selectedClass)
+            axiosSecure.post('/bookings', selectedClass)
                 .then(res => {
                     if (res.data.insertedId) {
                         refetch()

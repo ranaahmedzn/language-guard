@@ -1,6 +1,7 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/logo.png"
 import useBookings from "../hooks/useBookings";
+import './Dashboard.css'
 
 const Dashboard = () => {
     // const [isOpen, setIsOpen] = useState(false)
@@ -20,20 +21,25 @@ const Dashboard = () => {
                             <span className="ml-3 text-xl">Language Guard</span>
                         </Link >
                         <div className="pl-2 pt-5 pr-8">
-                            <ul className="space-y-2">
+                            <ul className="space-y-2 dashboard-menu">
                                 <li>
-                                    <Link to='/dashboard/mySelectedClasses' className="dashboard-menu-item bg-gray-500 bg-opacity-20">
+                                    <NavLink to='/dashboard/mySelectedClasses' className="dashboard-menu-item">
                                         <span className="flex items-center space-x-2">
 
                                             <span >My Selected Classes</span>
                                         </span>
                                         <span className="bg-sky-500 text-gray-100 font-bold px-2 py-0.5 text-xs rounded-lg">{bookings.length}</span>
-                                    </Link>
+                                    </NavLink>
                                 </li>
                                 <li>
-                                    <Link className="dashboard-menu-item">
+                                    <NavLink to='/dashboard/myEnrolledClasses' className="dashboard-menu-item">
                                         <span>My Enrolled Classes</span>
-                                    </Link>
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/dashboard/paymentHistory' className="dashboard-menu-item">
+                                        <span>Payment History</span>
+                                    </NavLink>
                                 </li>
                             </ul>
                         </div>

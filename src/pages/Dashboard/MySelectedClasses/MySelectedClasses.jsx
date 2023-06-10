@@ -36,7 +36,7 @@ const MySelectedClasses = () => {
 
     return (
         <div>
-            <h2 className="text-3xl w-fit rounded-lg shadow-xl font-bold p-3 bg-sky-200 border border-sky-500 text-sky-500">Total selected classes: {bookings.length}</h2>
+            <h2 className="text-3xl w-fit rounded-lg shadow-xl font-bold p-3 bg-sky-200 border border-sky-500 text-sky-500">Total Selected Classes: {bookings.length}</h2>
 
             <div className="relative overflow-x-auto shadow-md mt-10 sm:rounded-lg">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
