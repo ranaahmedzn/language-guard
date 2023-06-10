@@ -10,8 +10,8 @@ const Dashboard = () => {
 
     // TODO: load isStudent and isAdmin data from server
     const isStudent = false;
-    const isInstructor = true;
-    const isAdmin = false;
+    const isInstructor = false;
+    const isAdmin = true;
 
     return (
         <div className="w-full h-screen overflow-x-auto">
@@ -61,6 +61,21 @@ const Dashboard = () => {
                                         <li>
                                             <NavLink to='/dashboard/myClasses' className="dashboard-menu-item">
                                                 <span>My Classes</span>
+                                            </NavLink>
+                                        </li>
+                                    </>
+                                }
+
+                                {
+                                    isAdmin && <>
+                                        <li>
+                                            <NavLink to='/dashboard/manageClasses' className="dashboard-menu-item">
+                                                <span>Manage Classes</span>
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to='/dashboard/manageUsers' className="dashboard-menu-item">
+                                                <span>Manage Users</span>
                                             </NavLink>
                                         </li>
                                     </>

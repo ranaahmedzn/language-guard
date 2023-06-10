@@ -12,11 +12,14 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import MyEnrolledClasses from "../pages/Dashboard/MyEnrolledClasses/MyEnrolledClasses";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
+import MyClasses from "../pages/Dashboard/MyClasses/MyClasses";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Main />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: "/",
@@ -43,6 +46,7 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <Dashboard />,
+        errorElement: <ErrorPage />,
         children: [
             // student dashboard routes 
             {
@@ -67,9 +71,12 @@ const router = createBrowserRouter([
                 path: 'addClass',
                 element: <AddClass />
             },
+            {
+                path: 'myClasses',
+                element: <MyClasses />
+            },
         ]
     }
-    
 ]);
 
 export default router;
