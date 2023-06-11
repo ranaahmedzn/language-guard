@@ -2,9 +2,11 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/logo.png"
 import useBookings from "../hooks/useBookings";
 import './Dashboard.css'
-import { FaHome, FaTable } from "react-icons/fa";
 import useUserRole from "../hooks/useUserRole";
+import { FaBook, FaHome, FaRegListAlt, FaTable, FaWallet } from "react-icons/fa";
 import { FaUserCog } from 'react-icons/fa';
+import {  MdChecklist } from "react-icons/md";
+import { TbLayoutGridAdd } from "react-icons/tb";
 
 const Dashboard = () => {
     // const [isOpen, setIsOpen] = useState(false)
@@ -25,14 +27,14 @@ const Dashboard = () => {
                             <img src={logo} width="50" alt="" />
                             <span className="ml-3 text-xl">Language Guard</span>
                         </Link >
-                        <div className="pl-2 pt-5 pr-8">
+                        <div className="pl-2 pt-5 pr-4">
                             <ul className="space-y-2 dashboard-menu">
                                 {
                                     role.isStudent && <>
                                         <li>
                                             <NavLink to='/dashboard/mySelectedClasses' className="dashboard-menu-item">
                                                 <span className="flex items-center space-x-2">
-
+                                                    <MdChecklist />
                                                     <span >My Selected Classes</span>
                                                 </span>
                                                 <span className="bg-sky-500 text-gray-100 font-bold px-2 py-0.5 text-xs rounded-lg">{bookings.length}</span>
@@ -40,11 +42,13 @@ const Dashboard = () => {
                                         </li>
                                         <li>
                                             <NavLink to='/dashboard/myEnrolledClasses' className="dashboard-menu-item">
+                                                <FaBook />
                                                 <span>My Enrolled Classes</span>
                                             </NavLink>
                                         </li>
                                         <li>
                                             <NavLink to='/dashboard/paymentHistory' className="dashboard-menu-item">
+                                                <FaWallet /> 
                                                 <span>Payment History</span>
                                             </NavLink>
                                         </li>
@@ -54,11 +58,13 @@ const Dashboard = () => {
                                     role.isInstructor && <>
                                         <li>
                                             <NavLink to='/dashboard/addClass' className="dashboard-menu-item">
+                                                <TbLayoutGridAdd size={18} />
                                                 <span>Add a Class</span>
                                             </NavLink>
                                         </li>
                                         <li>
                                             <NavLink to='/dashboard/myClasses' className="dashboard-menu-item">
+                                                <FaRegListAlt />
                                                 <span>My Classes</span>
                                             </NavLink>
                                         </li>

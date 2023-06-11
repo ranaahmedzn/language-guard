@@ -6,6 +6,7 @@ import { FaEnvelope, FaFacebook, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhon
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useUserRole from "../../../hooks/useUserRole";
+import { toast } from "react-hot-toast";
 
 
 const Navbar = () => {
@@ -13,7 +14,7 @@ const Navbar = () => {
 
     const handleSignOut = () => {
         signOutUser()
-            .then(() => alert('Sign out successful!'))
+            .then(() => toast.success('Sign out successful!'))
             .then(error => console.log(error))
     }
 

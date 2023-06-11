@@ -7,7 +7,7 @@ const StudentRoute = ({children}) => {
     const location = useLocation()
     const [role, roleLoading] = useUserRole()
 
-    if (loading && roleLoading) {
+    if (loading || roleLoading) {
         return <h2 className="text-3xl font-bold text-center">Loading..</h2> //TODO: add loading page
     }
 

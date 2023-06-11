@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
     const [show, setShow] = useState(false)
@@ -23,12 +24,12 @@ const Login = () => {
                 const user = result.user;
                 console.log(user)
                 reset()
-                alert("Login successful!")
+                toast.success('Sing in successful!')
                 navigate(from, { replace: true })
             })
             .catch(error => {
                 console.log(error)
-                alert(error.message)
+                toast.error(error?.message)
             })
     };
 

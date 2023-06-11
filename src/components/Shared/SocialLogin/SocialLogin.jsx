@@ -3,6 +3,7 @@ import { AuthContext } from '../../../providers/AuthProvider';
 import { FaGoogle, FaTwitter } from "react-icons/fa";
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 const SocialLogin = () => {
     const {googleSingIn, twitterSingIn} = useContext(AuthContext)
@@ -15,7 +16,7 @@ const SocialLogin = () => {
         .then(result => {
             const user = result.user;
             console.log(user)
-            alert("Successfully login with google!")
+            toast.success('Successfully login with google!');
 
             const newUser = {name: user.displayName, email: user.email, role: 'student', image: user.photoURL}
             // call a post api to send users to the server 
@@ -27,7 +28,7 @@ const SocialLogin = () => {
 
             navigate(from, {replace: true})
         })
-        .catch(error => console.log(error))
+        .catch(error => toast.error(error?.message))
     }
 
     const handleTwitterSingIn = () => {
@@ -35,7 +36,7 @@ const SocialLogin = () => {
         .then(result => {
             const user = result.user;
             console.log(user)
-            alert("Successfully login with Twitter!")
+            toast.success('Successfully login with twitter!');
 
             // Here I created a random email with twitter username because there are no accessible email
             const newUser = {name: user.displayName, email: `${user.reloadUserInfo.screenName}.yahoo.com`, role: 'student', image: user.photoURL}
@@ -48,7 +49,7 @@ const SocialLogin = () => {
 
             navigate(from, {replace: true})
         })
-        .catch(error => console.log(error))
+        .catch(error => toast.error(error?.message))
     }
 
     return (

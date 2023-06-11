@@ -1,6 +1,7 @@
 import { FaUsers } from "react-icons/fa";
 import useClasses from "../../../hooks/useClasses";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { toast } from "react-hot-toast";
 
 const ManageClasses = () => {
     const [classes, refetch] = useClasses()
@@ -13,7 +14,7 @@ const ManageClasses = () => {
             console.log(res.data)
             if(res.data.modifiedCount){
                 refetch()
-                alert('Yeah updated')
+                toast.success('Approved successful!');
             }
         })
         .catch(error => console.log(error))
@@ -25,7 +26,7 @@ const ManageClasses = () => {
             console.log(res.data)
             if(res.data.modifiedCount){
                 refetch()
-                alert('Yeah updated')
+                toast.success('Denied successful!')
             }
         })
         .catch(error => console.log(error))

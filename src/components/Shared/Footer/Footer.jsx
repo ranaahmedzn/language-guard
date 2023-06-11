@@ -4,8 +4,22 @@ import { TbLocationFilled } from "react-icons/tb";
 
 import logo from "../../../assets/logo.png"
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Footer = () => {
+
+    const handleSubscribe = (event) => {
+        event.preventDefault()
+        setTimeout( () => {
+            event.target.reset()
+            Swal.fire(
+                'Subscribed!',
+                'Thanks for your subscription!',
+                'success'
+              )
+        }, 700)
+    }
+
     return (
         <footer className="bg-[#111111] text-gray-600">
             <Container>
@@ -17,7 +31,7 @@ const Footer = () => {
                         </Link>
                         <div className="w-2/3 flex items-center gap-4">
                             <p className="text-2xl font-semibold text-[#AEB2C2]">Subscribe to our Newsletter!</p>
-                            <form className="w-1/2 ml-auto">
+                            <form onSubmit={handleSubscribe} className="w-1/2 ml-auto">
                                 <label htmlFor="search" className="mb-2 text-sm font-medium text-gray-900 sr-only ">Search</label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 left-1 flex items-center pl-3 pointer-events-none">

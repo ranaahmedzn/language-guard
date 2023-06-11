@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { toast } from "react-hot-toast";
 
 const ManageUsers = () => {
     const [axiosSecure] = useAxiosSecure()
@@ -12,25 +13,25 @@ const ManageUsers = () => {
         },
     })
 
-    const handleMakeInstructor = (id) => {
+    const handleMakeInstructor = (id, name) => {
         axiosSecure.patch(`/users/${id}`)
         .then(res => {
             console.log(res.data)
             if(res.data.modifiedCount){
                 refetch()
-                alert('Yeah updated')
+                toast.success(`${name} is now Instructor!`)
             }
         })
         .catch(error => console.log(error))
     }
 
-    const handleMakeAdmin = (id) => {
+    const handleMakeAdmin = (id, name) => {
         axiosSecure.put(`/users/${id}`)
         .then(res => {
             console.log(res.data)
             if(res.data.modifiedCount){
                 refetch()
-                alert('Yeah updated')
+                toast.success(`${name} is now Admin!`)
             }
         })
         .catch(error => console.log(error))
@@ -81,10 +82,10 @@ const ManageUsers = () => {
                                 </td>
                                 <td className="px-6 py-4">
                                     <div className="flex items-center gap-3">
-                                        <button onClick={() => handleMakeInstructor(user._id)} className="bg-yellow-100 text-yellow-600 text-sm font-medium px-4 py-2 rounded inline-flex gap-2 items-center" disabled={user.role === "instructor" && true}>
+                                        <button onClick={() => handleMakeInstructor(user._id, user.name)} className="bg-yellow-100 text-yellow-600 text-sm font-medium px-4 py-2 rounded inline-flex gap-2 items-center" disabled={user.role === "instructor" && true}>
                                             Make Instructor
                                         </button>
-                                        <button onClick={() => handleMakeAdmin(user._id)} className="bg-green-100 text-green-600 text-sm font-medium px-4 py-2 rounded inline-flex gap-2 items-center" disabled={user.role === "admin" && true}>
+                                        <button onClick={() => handleMakeAdmin(user._id, user.name)} className="bg-green-100 text-green-600 text-sm font-medium px-4 py-2 rounded inline-flex gap-2 items-center" disabled={user.role === "admin" && true}>
                                             Make Admin
                                         </button>
                                     </div>

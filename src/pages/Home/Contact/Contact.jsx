@@ -1,6 +1,23 @@
+import { useForm } from "react-hook-form";
 import Container from "../../../components/Container/Container";
+import Swal from "sweetalert2";
 
 const Contact = () => {
+    const { register, handleSubmit, reset } = useForm();
+    const onSubmit = data => {
+        const contactInfo = data;
+        console.log(contactInfo)
+
+        setTimeout(() => {
+            reset()
+            Swal.fire(
+                'Message sent!',
+                'We will contact you soon. Thanks for your message😊',
+                'success'
+            )
+        }, 700)
+    };
+
     return (
         <section id="contact" className="bg-gray-700 py-16">
             <Container>
@@ -10,41 +27,41 @@ const Contact = () => {
                             Contact us
                         </h1>
                         <span className="inline-block h-[5px] w-10 rounded-full bg-[#FEBC1E] my-4"></span>
-                       
+
                     </div>
                 </div>
 
                 <div className="bg-gray-900 rounded-lg mt-6 max-w-lg mx-auto">
                     <div className="flex flex-col p-4 sm:p-6 lg:p-8 dark:border-gray-700">
-                        <form>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="grid gap-4 lg:gap-6">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                                     <div>
                                         <label htmlFor="firstName" className="block text-sm font-medium text-white mb-1">First Name</label>
-                                        <input type="text" name="firstName" id="firstName" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-0 bg-gray-700" />
+                                        <input type="text" {...register("firstName")} name="firstName" id="firstName" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-0 bg-gray-700 text-gray-300" />
                                     </div>
 
                                     <div>
                                         <label htmlFor="lastName" className="block text-sm font-medium text-white mb-1">Last Name</label>
-                                        <input type="text" name="lastName" id="lastName" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-0 bg-gray-700" />
+                                        <input type="text" {...register("lastName")} name="lastName" id="lastName" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-0 bg-gray-700 text-gray-300" />
                                     </div>
                                 </div>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                                     <div>
                                         <label htmlFor="email" className="block text-sm font-medium text-white mb-1">Email</label>
-                                        <input type="email" name="email" id="email" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-0 bg-gray-700" />
+                                        <input type="email" {...register("email")} name="email" id="email" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-0 bg-gray-700 text-gray-300" />
                                     </div>
 
                                     <div>
                                         <label htmlFor="phone" className="block text-sm font-medium text-white mb-1">Phone Number</label>
-                                        <input type="text" name="phone" id="phone" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-0 bg-gray-700" />
+                                        <input type="text" {...register("phone")} name="phone" id="phone" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-0 bg-gray-700 text-gray-300" />
                                     </div>
                                 </div>
 
                                 <div>
                                     <label htmlFor="message" className="block text-sm font-medium text-white mb-1">Message</label>
-                                    <textarea id="message" name="message" rows="4" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-0 bg-gray-700"></textarea>
+                                    <textarea id="message" {...register("message")} name="message" rows="4" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-transparent bg-gray-700 text-gray-300"></textarea>
                                 </div>
                             </div>
 

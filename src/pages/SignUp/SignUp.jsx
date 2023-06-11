@@ -6,6 +6,8 @@ import { AuthContext } from '../../providers/AuthProvider';
 import SocialLogin from '../../components/Shared/SocialLogin/SocialLogin';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import { toast } from 'react-hot-toast';
 
 const SignUp = () => {
     const [checked, setChecked] = useState(true)
@@ -18,7 +20,11 @@ const SignUp = () => {
         console.log(data)
 
         if (data.password !== data.confirmPassword) {
-            alert("Oops, Confirm password didn't matched!")
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops..',
+                text: "Confirm password didn't matched!",
+              })
             return;
         }
         const newUser = { name: data.name, email: data.email, role: 'student', image: data.photoUrl }
@@ -28,10 +34,10 @@ const SignUp = () => {
                 const user = result.user;
                 console.log(user)
                 reset()
-                alert("Sign up successful!")
+                toast.success('Sing up successful!')
 
                 updateUserProfile(data.name, data.photoUrl)
-                    .then(() => alert("Profile updated"))
+                    .then(() => {})
                     .catch((error => console.log(error)))
 
                 // call a post api to send users to the server 
@@ -45,14 +51,14 @@ const SignUp = () => {
                     signOutUser()
                         .then(() => {
                             navigate("/login")
-                            alert("Sign out from sign up page")
+                            toast("Login with to your account.")
                         })
                         .catch(error => console.log(error))
                 }
             })
             .catch(error => {
                 console.log(error)
-                alert(error.message)
+                toast.error(error?.message)
             })
     };
 
