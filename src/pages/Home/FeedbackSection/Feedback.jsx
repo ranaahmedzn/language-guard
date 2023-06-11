@@ -8,7 +8,7 @@ const Feedback = ({feedback}) => {
     //TODO: add date and use the actual student image.
     return (
         <div className={`w-full h-full text-center p-7 rounded-lg shadow ${theme === 'light' ? "bg-white" : "bg-[#1c2d49]"}`}>
-            <img src="https://i.ibb.co/QHfKVfL/profile2.jpg" className="w-[110px] mx-auto -mt-20 mb-6 rounded-full ring-4 ring-[#FEBC1E]" alt="" />
+            <img src={feedback.image} className="w-[110px] mx-auto -mt-20 mb-6 rounded-full ring-4 ring-[#FEBC1E]" alt="" />
             <div className="space-y-2">
                 <h3 className={`text-xl font-semibold ${theme === 'light' ? "text-gray-900" : "text-gray-100"}`}>{feedback.name}</h3>
                 <Rating className="text-[#FEBC1E] text-lg"

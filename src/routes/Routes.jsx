@@ -19,6 +19,7 @@ import InstructorRoute from "./InstructorRoute";
 import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import AdminRoute from "./AdminRoute";
+import GiveFeedback from "../pages/Dashboard/GiveFeedback/GiveFeedback";
 
 const router = createBrowserRouter([
     {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
             {
                 path: 'paymentHistory',
                 element: <StudentRoute><PaymentHistory /></StudentRoute>
+            },
+            {
+                path: 'feedback',
+                element: <StudentRoute><GiveFeedback /></StudentRoute>
             },
 
             // instructor dashboard routes 

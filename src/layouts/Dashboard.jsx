@@ -3,8 +3,7 @@ import logo from "../assets/logo.png"
 import useBookings from "../hooks/useBookings";
 import './Dashboard.css'
 import useUserRole from "../hooks/useUserRole";
-import { FaBook, FaHome, FaRegListAlt, FaTable, FaWallet } from "react-icons/fa";
-import { FaUserCog } from 'react-icons/fa';
+import { FaBook, FaHome, FaUserCog, FaRegListAlt, FaTable, FaWallet, FaPenSquare } from "react-icons/fa";
 import {  MdChecklist } from "react-icons/md";
 import { TbLayoutGridAdd } from "react-icons/tb";
 
@@ -50,6 +49,12 @@ const Dashboard = () => {
                                             <NavLink to='/dashboard/paymentHistory' className="dashboard-menu-item">
                                                 <FaWallet /> 
                                                 <span>Payment History</span>
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to='/dashboard/feedback' className="dashboard-menu-item">
+                                                <FaPenSquare /> 
+                                                <span>Give Feedback</span>
                                             </NavLink>
                                         </li>
                                     </>
