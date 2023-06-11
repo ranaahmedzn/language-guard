@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import Container from "../../../components/Container/Container";
 import Swal from "sweetalert2";
+import useThemeContext from "../../../hooks/useThemeContext";
 
 const Contact = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -18,8 +19,10 @@ const Contact = () => {
         }, 700)
     };
 
+    const { theme } = useThemeContext()
+
     return (
-        <section id="contact" className="bg-gray-700 py-16">
+        <section id="contact" className={`py-16 ${theme === 'light' && "bg-[#122033]"}`}>
             <Container>
                 <div className="max-w-lg mx-auto text-white">
                     <div className="text-center">

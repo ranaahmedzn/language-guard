@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import "./FeedbackSection.css"
 import { A11y, Navigation, Pagination } from 'swiper';
 import Container from "../../../components/Container/Container";
+import useThemeContext from "../../../hooks/useThemeContext";
 
 const FeedbackSection = () => {
     const { data: feedbacks = [] } = useQuery({
@@ -17,10 +18,12 @@ const FeedbackSection = () => {
         }
     })
 
+    const { theme } = useThemeContext()
+
     return (
-        <div className="py-16 bg-violet-100">
+        <div className={`py-16 ${theme === 'light' && "bg-violet-100"}`}>
             <Container>
-                <h2 className="text-3xl font-bold text-center title">Our Students Feedback</h2>
+                <h2 className={`text-3xl font-bold text-center title ${theme === 'light' ? "text-gray-900" : "text-gray-100"}`}>Our Students Feedback</h2>
                 <Swiper
                     spaceBetween={40}
                     slidesPerView="auto"

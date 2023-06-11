@@ -7,16 +7,19 @@ import AuthProvider from './providers/AuthProvider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import axios from 'axios'
 import { Toaster } from 'react-hot-toast'
+import ThemeProvider from './providers/ThemeProvider'
 
 const queryClient = new QueryClient()
 
 axios.defaults.baseURL = "http://localhost:5000"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <QueryClientProvider client={queryClient}>
+  <QueryClientProvider client={queryClient}>
+    <ThemeProvider>
       <AuthProvider>
         <RouterProvider router={router} />
         <Toaster />
       </AuthProvider>
-    </QueryClientProvider>
+    </ThemeProvider>
+  </QueryClientProvider>
 )

@@ -8,6 +8,12 @@ export default {
   theme: {
     extend: {},
   },
+  variants: {
+    extend: {
+      backgroundColor: ['dark'],
+      textColor: ['dark'],
+    },
+  },
   plugins: [
     require('flowbite/plugin')
 ],
