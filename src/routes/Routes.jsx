@@ -20,6 +20,7 @@ import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import AdminRoute from "./AdminRoute";
 import GiveFeedback from "../pages/Dashboard/GiveFeedback/GiveFeedback";
+import App from "../App";
 
 const router = createBrowserRouter([
     {

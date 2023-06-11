@@ -101,7 +101,7 @@ const Dashboard = () => {
                     </div>
 
                     {/* dashboard content */}
-                    <div className="flex-grow my-8 mx-12">
+                    <div className="my-8 mx-12 w-2/3 flex-grow">
                         <Outlet />
                     </div>
                 </div>
