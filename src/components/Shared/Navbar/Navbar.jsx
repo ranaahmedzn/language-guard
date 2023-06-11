@@ -5,6 +5,7 @@ import logo from "../../../assets/logo.png"
 import { FaEnvelope, FaFacebook, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhone, FaTwitter } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import useUserRole from "../../../hooks/useUserRole";
 
 
 const Navbar = () => {
@@ -16,9 +17,7 @@ const Navbar = () => {
             .then(error => console.log(error))
     }
 
-    //TODO: load isStudent and isAdmin data from server
-    const isStudent = false;
-    const isAdmin = false;
+    const [role] = useUserRole()
 
     return (
         <header className="bg-white text-gray-600 shadow">
@@ -55,12 +54,12 @@ const Navbar = () => {
                         <NavLink to="/classes" className="default">Classes</NavLink>
                         <a href="/#contact" className="default">Contact</a>
                         {
-                            user && (isStudent ? (
-                                <NavLink to="/dashboard" className="default">Dashboard</NavLink>
-                            ) : isAdmin ? (
-                                <NavLink to="/dashboard" className="default">Dashboard</NavLink>
+                            user && (role.isStudent ? (
+                                <NavLink to="/dashboard/mySelectedClasses" className="default">Dashboard</NavLink>
+                            ) : role.isAdmin ? (
+                                <NavLink to="/dashboard/manageClasses" className="default">Dashboard</NavLink>
                             ) : (
-                                <NavLink to="/dashboard" className="default">Dashboard</NavLink>
+                                <NavLink to="/dashboard/addClass" className="default">Dashboard</NavLink>
                             ))
                         }
                     </nav>

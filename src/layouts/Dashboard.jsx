@@ -2,17 +2,15 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/logo.png"
 import useBookings from "../hooks/useBookings";
 import './Dashboard.css'
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaTable } from "react-icons/fa";
 import useUserRole from "../hooks/useUserRole";
+import { FaUserCog } from 'react-icons/fa';
 
 const Dashboard = () => {
     // const [isOpen, setIsOpen] = useState(false)
-    const [bookings] = useBookings()
 
     const [role] = useUserRole()
-    // const isStudent = false;
-    // const isInstructor = false;
-    // const isAdmin = true;
+    const [bookings] = useBookings()
 
     return (
         <div className="w-full h-screen overflow-x-auto">
@@ -71,11 +69,13 @@ const Dashboard = () => {
                                     role.isAdmin && <>
                                         <li>
                                             <NavLink to='/dashboard/manageClasses' className="dashboard-menu-item">
+                                                <FaTable />
                                                 <span>Manage Classes</span>
                                             </NavLink>
                                         </li>
                                         <li>
                                             <NavLink to='/dashboard/manageUsers' className="dashboard-menu-item">
+                                                <FaUserCog />
                                                 <span>Manage Users</span>
                                             </NavLink>
                                         </li>

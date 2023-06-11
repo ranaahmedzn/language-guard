@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import '@smastrom/react-rating/style.css'
@@ -10,14 +9,12 @@ import axios from 'axios'
 
 const queryClient = new QueryClient()
 
-axios.defaults.baseURL = "http://localhost:5000/"
+axios.defaults.baseURL = "http://localhost:5000"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>
     </QueryClientProvider>
-  </React.StrictMode>
 )
