@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 import useBookings from "../../hooks/useBookings";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useUserRole from "../../hooks/useUserRole";
 
 const SingleClass = ({ singleClass }) => {
     const [loading, setLoading] = useState(false)
@@ -12,15 +13,14 @@ const SingleClass = ({ singleClass }) => {
     const [, refetch] = useBookings()
     const [axiosSecure] = useAxiosSecure()
 
-    //TODO: load isStudent base data from server
-    const isStudent = true;
+    const [role] = useUserRole()
 
     const { _id, name, image, instructorName, instructorImage, instructorEmail, price, availableSeats, students } = singleClass || {}
 
     const handleSelectClass = () => {
         const selectedClass = { name, image, price, studentEmail: user?.email, instructorName, instructorEmail, classId: _id }
 
-        if (user && isStudent) {
+        if (user && role.isStudent) {
             setLoading(true)
             axiosSecure.post('/bookings', selectedClass)
                 .then(res => {
@@ -62,7 +62,7 @@ const SingleClass = ({ singleClass }) => {
 
                 <div className="flex items-center justify-between">
                     <p className="leading-relaxed">Available seats: {availableSeats}</p>
-                    <button onClick={handleSelectClass} disabled={!isStudent || availableSeats === 0 && true} className="primary-btn py-3 flex items-center gap-1 disabled:bg-gray-200">
+                    <button onClick={handleSelectClass} disabled={role.isInstructor ||role.isAdmin || availableSeats === 0 && true} className="primary-btn py-3 flex items-center gap-1 disabled:bg-gray-200">
                         {
                             loading ? <><span className="animate-spin">
                                     <FaSpinner size={18} /></span><span>Select</span></>

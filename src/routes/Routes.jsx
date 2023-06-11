@@ -17,6 +17,8 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import StudentRoute from "./StudentRoute";
 import InstructorRoute from "./InstructorRoute";
 import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
+import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -82,7 +84,11 @@ const router = createBrowserRouter([
             // admin dashboard routes
             {
                 path: 'manageClasses',
-                element: <ManageClasses />
+                element: <AdminRoute><ManageClasses /></AdminRoute>
+            },
+            {
+                path: 'manageUsers',
+                element: <AdminRoute><ManageUsers /></AdminRoute>
             }
         ]
     }
