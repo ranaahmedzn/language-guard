@@ -2,12 +2,14 @@ import { FaUsers } from "react-icons/fa";
 import useClasses from "../../../hooks/useClasses";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { toast } from "react-hot-toast";
+import { useState } from "react";
+import FeedbackModal from "./FeedbackModal";
 
 const ManageClasses = () => {
+    const [openModal, setOpenModal] = useState(false)
     const [classes, refetch] = useClasses()
     const [axiosSecure] = useAxiosSecure()
 
-    //TODO: show toast/sweet alert
     const handleApprove = (id) => {
         axiosSecure.patch(`/classes/${id}`)
         .then(res => {
@@ -65,8 +67,9 @@ const ManageClasses = () => {
 
                             <button onClick={() => handleDeny(singleClass._id)}  className="text-sm font-medium px-4 py-2 rounded hover:text-[#FEBC1E] shadow disabled:hover:text-black" disabled={singleClass.status === 'approved' || singleClass.status === 'denied' && true}>Deny</button>
 
-                            <button className="text-sm font-medium px-4 py-2 rounded hover:text-[#FEBC1E] shadow">Feedback</button>
+                            <button onClick={() => setOpenModal(!openModal)} className="text-sm font-medium px-4 py-2 rounded hover:text-[#FEBC1E] shadow">Feedback</button>
                         </div>
+                        {openModal && <FeedbackModal id={singleClass._id} setOpenModal={setOpenModal} />}
                     </div>
                 </div>)
                 }
