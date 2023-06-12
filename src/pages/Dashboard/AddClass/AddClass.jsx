@@ -4,6 +4,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
+import DashboardNav from "../../../components/Shared/DashboardNav/DashboardNav";
 
 const AddClass = () => {
     const [loading, setLoading] = useState(false)
@@ -60,7 +62,10 @@ const AddClass = () => {
 
     return (
         <div>
-            <h2 className="text-2xl font-bold text-center">Add a New Class</h2>
+            <Helmet>
+                <title>Add Class - Language Guard</title>
+            </Helmet>
+            <DashboardNav name="Add Class" />
             <div className="bg-gray-200 w-2/3 mx-auto mt-8 flex flex-col p-4 sm:p-6 lg:p-8 dark:border-gray-700 rounded-lg">
                 <form onSubmit={handleAddClass}>
                     <div className="grid">

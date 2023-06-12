@@ -2,6 +2,7 @@ import Container from "../../components/Container/Container";
 import SingleClass from "./SingleClass";
 import useClasses from "../../hooks/useClasses";
 import useThemeContext from "../../hooks/useThemeContext";
+import { Helmet } from "react-helmet-async";
 
 const Classes = () => {
     const [classes] = useClasses()
@@ -9,6 +10,9 @@ const Classes = () => {
 
     return (
         <section className="my-16">
+            <Helmet>
+                <title>Classes - Language Guard</title>
+            </Helmet>
             <Container>
                 <div className="text-center w-2/3 mx-auto space-y-4 mb-12">
                     <h2 className={`text-3xl font-bold ${theme === 'light' ? "text-gray-900" : "text-gray-100"}`}>All the Exciting Classes</h2>

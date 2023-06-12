@@ -6,11 +6,14 @@ import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
 import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
 import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
+import useUserRole from "../../hooks/useUserRole";
 
 const Login = () => {
     const [loading, setLoading] = useState(false)
     const [show, setShow] = useState(false)
     const { signInUser } = useContext(AuthContext)
+    const [, , refetch] = useUserRole()
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -27,6 +30,7 @@ const Login = () => {
                 reset()
                 setLoading(false)
                 toast.success('Sing in successful!')
+                refetch()
                 navigate(from, { replace: true })
             })
             .catch(error => {
@@ -39,6 +43,9 @@ const Login = () => {
     //TODO: design aktu change korte hobe
     return (
         <div className="bg-neutral-200">
+            <Helmet>
+                <title>Login - Language Guard</title>
+            </Helmet>
             <Container>
                 <div className="py-28">
                     <div className="mx-auto min-h-[614px] w-2/3 flex rounded-lg shadow-xl overflow-hidden">

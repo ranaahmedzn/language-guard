@@ -4,20 +4,15 @@ import useBookings from "../hooks/useBookings";
 import './Dashboard.css'
 import useUserRole from "../hooks/useUserRole";
 import { FaBook, FaHome, FaUserCog, FaRegListAlt, FaTable, FaWallet, FaPenSquare } from "react-icons/fa";
-import {  MdChecklist } from "react-icons/md";
+import { MdChecklist} from "react-icons/md";
 import { TbLayoutGridAdd } from "react-icons/tb";
 
 const Dashboard = () => {
-    // const [isOpen, setIsOpen] = useState(false)
-
     const [role] = useUserRole()
     const [bookings] = useBookings()
 
     return (
         <div className="w-full h-screen overflow-x-auto">
-            {/* <button onClick={() => setIsOpen(!isOpen)} className="primary-btn md:hidden">Open Sidebar</button>
-             */}
-
             <div className="hidden md:block">
                 <div className="flex">
                     {/* dashboard sidebar */}
@@ -47,13 +42,13 @@ const Dashboard = () => {
                                         </li>
                                         <li>
                                             <NavLink to='/dashboard/paymentHistory' className="dashboard-menu-item">
-                                                <FaWallet /> 
+                                                <FaWallet />
                                                 <span>Payment History</span>
                                             </NavLink>
                                         </li>
                                         <li>
                                             <NavLink to='/dashboard/feedback' className="dashboard-menu-item">
-                                                <FaPenSquare /> 
+                                                <FaPenSquare />
                                                 <span>Give Feedback</span>
                                             </NavLink>
                                         </li>
@@ -101,7 +96,7 @@ const Dashboard = () => {
                     </div>
 
                     {/* dashboard content */}
-                    <div className="my-8 mx-12 w-2/3 flex-grow">
+                    <div className="m-7 w-2/3 flex-grow">
                         <Outlet />
                     </div>
                 </div>

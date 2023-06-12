@@ -4,6 +4,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
 import FeedbackModal from "./FeedbackModal";
+import { Helmet } from "react-helmet-async";
+import DashboardNav from "../../../components/Shared/DashboardNav/DashboardNav";
 
 const ManageClasses = () => {
     const [openModal, setOpenModal] = useState(false)
@@ -36,7 +38,10 @@ const ManageClasses = () => {
 
     return (
         <div>
-            <h2 className="text-3xl font-bold mb-6">Here is the all Classes: {classes.length}</h2>
+            <Helmet>
+                <title>Manage Classes - Language Guard</title>
+            </Helmet>
+            <DashboardNav name="Manage Classes" number={classes.length} />
             <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {
                     classes.map((singleClass) => <div

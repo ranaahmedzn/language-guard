@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
+import DashboardNav from "../../../components/Shared/DashboardNav/DashboardNav";
 
 const ManageUsers = () => {
     const [axiosSecure] = useAxiosSecure()
@@ -39,7 +41,10 @@ const ManageUsers = () => {
 
     return (
         <div>
-            <h2 className="text-2xl font-bold">This is Manage Users page</h2>
+            <Helmet>
+                <title>Manage Users - Language Guard</title>
+            </Helmet>
+            <DashboardNav name="Manage Users" number={users.length} />
 
             <div className="relative overflow-x-auto shadow-md mt-10 sm:rounded-lg">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">

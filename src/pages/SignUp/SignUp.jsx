@@ -8,6 +8,8 @@ import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { toast } from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
+import useUserRole from '../../hooks/useUserRole';
 
 const SignUp = () => {
     const [loading, setLoading] = useState(false)
@@ -15,6 +17,7 @@ const SignUp = () => {
     const [show, setShow] = useState(false)
     const { createUser, updateUserProfile, signOutUser } = useContext(AuthContext)
     const navigate = useNavigate()
+    const [, , refetch] = useUserRole()
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -47,6 +50,8 @@ const SignUp = () => {
                 axios.post('/users', newUser)
                     .then(res => {
                         console.log(res.data)
+                        refetch()
+                        navigate('/', {replace: true})
                     })
                     .catch(error => console.log(error))
 
@@ -68,6 +73,9 @@ const SignUp = () => {
 
     return (
         <div className='bg-neutral-200'>
+            <Helmet>
+                <title>Sign up - Language Guard</title>
+            </Helmet>
             <Container>
                 <div className="py-28">
                     <div className="mx-auto w-2/3 flex flex-row-reverse rounded-lg shadow-xl overflow-hidden">

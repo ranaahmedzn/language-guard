@@ -104,7 +104,6 @@ const Navbar = () => {
                     }
                 </div>
 
-                {/* ` */}
                 {/* for smaller device  */}
                 <div className="lg:hidden relative h-[75px] px-3 flex justify-between items-center">
                     <Link to="/" className="flex font-medium items-center text-gray-900 md:mb-0">
@@ -155,5 +154,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-{/* <button onClick={handleSignOut} type="submit" className="primary-btn py-2.5">Sign out</button> */ }

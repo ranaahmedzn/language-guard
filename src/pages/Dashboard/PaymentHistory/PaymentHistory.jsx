@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import useAuthInfo from "../../../hooks/useAuthInfo";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import moment from "moment/moment";
+import { Helmet } from "react-helmet-async";
+import DashboardNav from "../../../components/Shared/DashboardNav/DashboardNav";
 
 const PaymentHistory = () => {
     const { user, loading } = useAuthInfo()
@@ -19,7 +21,10 @@ const PaymentHistory = () => {
 
     return (
         <div>
-            <h2 className="text-3xl w-fit rounded-lg shadow-xl font-bold p-3 bg-sky-200 border border-sky-500 text-sky-500">Total Payment: {payments.length}</h2>
+            <Helmet>
+                <title>Payment History - Language Guard</title>
+            </Helmet>
+            <DashboardNav name="Payment History" number={payments.length} />
 
             <div className="relative overflow-x-auto shadow-md mt-10 sm:rounded-lg">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">

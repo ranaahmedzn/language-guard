@@ -25,7 +25,7 @@ const Footer = () => {
             <Container>
                 <div className="px-4 md:px-0">
                     <div className="py-8 flex flex-col items-center md:flex-row justify-between">
-                        <Link className="flex title-font font-medium items-center md:justify-start justify-center text-[#999999]">
+                        <Link className="flex font-medium items-center md:justify-start justify-center text-[#999999]">
                             <img src={logo} width="50" alt="" />
                             <span className="ml-3 text-3xl text-white">Language Guard</span>
                         </Link>
@@ -37,9 +37,9 @@ const Footer = () => {
                                     <div className="absolute inset-y-0 left-1 flex items-center pl-3 pointer-events-none">
                                         <FaEnvelope className="text-xl text-[#9CA3AF]" />
                                     </div>
-                                    <input type="search" id="search" className="block w-full p-4 pl-12 text-sm text-gray-900 border-gray-50 rounded-full bg-gray-50 focus:border-[#FEBC1E] focus:ring-[#FEBC1E] focus:outline-none placeholder:text-[#9CA3AF] font-medium" placeholder="Enter your email" required />
+                                    <input type="search" id="search" className="my-0 block w-full p-4 pl-12 text-sm text-gray-900 border-gray-50 rounded-full bg-gray-50 focus:border-[#FEBC1E] focus:ring-[#FEBC1E] focus:outline-none placeholder:text-[#9CA3AF] font-medium" placeholder="Enter your email" required />
 
-                                    <button type="submit" className="flex items-center gap-1 text-black absolute right-1.5 top-[5px] bg-[#FEBC1E] focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-6 py-3"><TbLocationFilled /> Subscribe</button>
+                                    <button type="submit" className="flex items-center gap-1 text-black absolute right-1 top-[4px] bg-[#FEBC1E] focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-6 py-3"><TbLocationFilled /> Subscribe</button>
                                 </div>
                             </form>
                         </div>

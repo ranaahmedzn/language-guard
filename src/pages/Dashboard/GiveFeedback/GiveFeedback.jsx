@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import useAuthInfo from "../../../hooks/useAuthInfo";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
+import DashboardNav from "../../../components/Shared/DashboardNav/DashboardNav";
 
 const GiveFeedback = () => {
     const [rating, setRating] = useState("")
@@ -35,6 +37,10 @@ const GiveFeedback = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Feedback - Language Guard</title>
+            </Helmet>
+            <DashboardNav name="Feedback"/>
             <div className="mt-10 w-2/3 mx-auto space-y-8 bg-neutral-200 p-10 rounded-lg">
                 <div>
                     <h3 className="text-2xl font-semibold text-center">Give Feedback</h3>

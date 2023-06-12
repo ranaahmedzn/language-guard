@@ -3,6 +3,7 @@ import axios from "axios";
 import Container from "../../components/Container/Container";
 import { FaArrowRight } from "react-icons/fa";
 import useThemeContext from "../../hooks/useThemeContext";
+import { Helmet } from "react-helmet-async";
 
 const Instructors = () => {
 
@@ -17,6 +18,9 @@ const Instructors = () => {
 
     return (
         <section className="text-gray-600 py-16">
+            <Helmet>
+                <title>Instructors - Language Guard</title>
+            </Helmet>
             <Container>
                 <div className="text-center w-2/3 mx-auto space-y-4 mb-12">
                     <h2 className={`text-3xl font-bold ${theme === 'light' ? "text-gray-900" : "text-gray-100"}`}>Explore our popular classes</h2>

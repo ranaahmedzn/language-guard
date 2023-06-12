@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Container from "../../../components/Container/Container";
 import Banner from "../Banner/Banner";
 import Contact from "../Contact/Contact";
@@ -8,6 +9,9 @@ import PopularInstructors from "../PopularInstructors/PopularInstructors";
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>Home - Language Guard</title>
+            </Helmet>
             <Banner />
             <Container>
                 <PopularClasses />

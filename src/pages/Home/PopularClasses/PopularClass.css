@@ -1,0 +1,12 @@
+.card-content{
+    transition: all .5s;
+}
+.card:hover .card-content{
+    top:0px;
+}
+.instructor-img{
+    transition: all 0.3s linear 0.2s;
+}
+.card:hover .instructor-img{
+    margin-top: 0;
+}

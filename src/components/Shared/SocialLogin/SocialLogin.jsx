@@ -4,9 +4,12 @@ import { FaGoogle, FaTwitter } from "react-icons/fa";
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import Swal from 'sweetalert2';
+import useUserRole from '../../../hooks/useUserRole';
 
 const SocialLogin = () => {
-    const {googleSingIn, twitterSingIn} = useContext(AuthContext)
+    const {googleSingIn} = useContext(AuthContext)
+    const [, , refetch] = useUserRole()
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
@@ -22,6 +25,7 @@ const SocialLogin = () => {
             // call a post api to send users to the server 
             axios.post('/users', newUser)
             .then(res => {
+                refetch()
                 console.log(res.data)
             })
             .catch(error => console.log(error))
@@ -31,25 +35,12 @@ const SocialLogin = () => {
         .catch(error => toast.error(error?.message))
     }
 
-    const handleTwitterSingIn = () => {
-        twitterSingIn()
-        .then(result => {
-            const user = result.user;
-            console.log(user)
-            toast.success('Successfully login with twitter!');
-
-            // Here I created a random email with twitter username because there are no accessible email
-            const newUser = {name: user.displayName, email: `${user.reloadUserInfo.screenName}.yahoo.com`, role: 'student', image: user.photoURL}
-            // call a post api to send users to the server 
-            axios.post('/users', newUser)
-            .then(res => {
-                console.log(res.data)
-            })
-            .catch(error => console.log(error))
-
-            navigate(from, {replace: true})
-        })
-        .catch(error => toast.error(error?.message))
+    const handleTwitterSignIn = () => {
+        return Swal.fire({
+            icon: 'info',
+            title: 'Oops..',
+            text: 'Twitter login is unavailable now for some issue!',
+          })
     }
 
     return (
@@ -59,7 +50,7 @@ const SocialLogin = () => {
 
             <div className='h-[30px] w-[1px] bg-gray-400'></div>
 
-            <button onClick={handleTwitterSingIn} className='flex items-center p-2.5 w-full rounded-lg border cursor-pointer hover:bg-neutral-200 text-sm font-medium'><FaTwitter /> <span className='mx-auto'>Continue with</span></button>
+            <button onClick={handleTwitterSignIn} className='flex items-center p-2.5 w-full rounded-lg border cursor-pointer hover:bg-neutral-200 text-sm font-medium'><FaTwitter /> <span className='mx-auto'>Continue with</span></button>
         </div>
         <span className='text-sm font-medium'>Or use your account</span>
         </div>

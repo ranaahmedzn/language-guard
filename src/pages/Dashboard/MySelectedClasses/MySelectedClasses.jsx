@@ -2,6 +2,8 @@ import Swal from "sweetalert2";
 import useBookings from "../../../hooks/useBookings";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
+import DashboardNav from "../../../components/Shared/DashboardNav/DashboardNav";
 
 const MySelectedClasses = () => {
     const [bookings, refetch] = useBookings()
@@ -36,8 +38,10 @@ const MySelectedClasses = () => {
 
     return (
         <div>
-            <h2 className="text-3xl w-fit rounded-lg shadow-xl font-bold p-3 bg-sky-200 border border-sky-500 text-sky-500">Total Selected Classes: {bookings.length}</h2>
-
+            <Helmet>
+                <title>Selected Classes - Language Guard</title>
+            </Helmet>
+            <DashboardNav name="Selected Classes" number={bookings.length}/>
             <div className="relative overflow-x-auto shadow-md mt-10 sm:rounded-lg">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-yellow-200 dark:bg-gray-700 dark:text-gray-400">
