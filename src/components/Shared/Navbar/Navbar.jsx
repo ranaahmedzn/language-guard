@@ -3,6 +3,7 @@ import './Navbar.css'
 import Container from "../../Container/Container";
 import logo from "../../../assets/logo.png"
 import { FaEnvelope, FaFacebook, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhone, FaTwitter } from "react-icons/fa";
+import { HiBars3BottomRight, HiXMark } from "react-icons/hi2";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useUserRole from "../../../hooks/useUserRole";
@@ -12,6 +13,7 @@ import { ThemeContext } from "../../../providers/ThemeProvider";
 
 
 const Navbar = () => {
+    const [open, setOpen] = useState(false)
     const [openDropdown, setOpenDropdown] = useState(false)
     const { user, signOutUser } = useContext(AuthContext)
     const { theme, toggleTheme } = useContext(ThemeContext)
@@ -30,7 +32,7 @@ const Navbar = () => {
     return (
         <header className={`${theme === 'light' ? 'bg-white text-gray-600' : 'text-gray-200'} shadow`}>
             <Container>
-                <div className="flex gap-5 py-3">
+                <div className="hidden lg:flex gap-5 py-3">
                     <p className="flex items-center gap-2 text-sm">
                         <FaMapMarkerAlt />
                         <span>102 Street, California, USA</span>
@@ -51,23 +53,26 @@ const Navbar = () => {
                     </div>
                 </div>
                 <hr className="border-0 h-[1px] bg-[#9999995e]" />
-                <div className="py-5 flex flex-wrap flex-col md:flex-row items-center">
+
+
+                {/* for large devices */}
+                <div className="hidden lg:flex py-5 flex-wrap flex-col md:flex-row items-center">
                     <Link to="/" className="flex font-medium items-center text-gray-900 mb-4 md:mb-0">
                         <img src={logo} width="50" alt="" />
                         <span className={`ml-3 text-xl ${theme === 'light' ? "text-gray-900" : "text-gray-100"}`}>Language Guard</span>
                     </Link >
                     <nav className="nav-menu md:ml-auto md:mr-4 md:py-1 md:pl-4 md:border-r md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-                        <NavLink to="/" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-100"}`}>Home</NavLink>
-                        <NavLink to="/instructors" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-100"}`}>Instructors</NavLink>
-                        <NavLink to="/classes" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-100"}`}>Classes</NavLink>
-                        <a href="/#contact" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-100"}`}>Contact</a>
+                        <NavLink to="/" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-gray-100"}`}>Home</NavLink>
+                        <NavLink to="/instructors" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-gray-100"}`}>Instructors</NavLink>
+                        <NavLink to="/classes" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-gray-100"}`}>Classes</NavLink>
+                        <a href="/#contact" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-gray-100"}`}>Contact</a>
                         {
                             user && (role.isStudent ? (
-                                <NavLink to="/dashboard/mySelectedClasses" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-100"}`}>Dashboard</NavLink>
+                                <NavLink to="/dashboard/mySelectedClasses" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-gray-100"}`}>Dashboard</NavLink>
                             ) : role.isAdmin ? (
-                                <NavLink to="/dashboard/manageClasses" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-100"}`}>Dashboard</NavLink>
+                                <NavLink to="/dashboard/manageClasses" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-gray-100"}`}>Dashboard</NavLink>
                             ) : (
-                                <NavLink to="/dashboard/addClass" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-100"}`}>Dashboard</NavLink>
+                                <NavLink to="/dashboard/addClass" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-gray-100"}`}>Dashboard</NavLink>
                             ))
                         }
                     </nav>
@@ -87,7 +92,7 @@ const Navbar = () => {
                                 </div>
                                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
                                     <li>
-                                        <Link  className="block px-4 py-2 w-full hover:bg-gray-100">Dashboard</Link>
+                                        <Link className="block px-4 py-2 w-full hover:bg-gray-100">Dashboard</Link>
                                     </li>
                                 </ul>
                                 <div className="py-1">
@@ -97,6 +102,52 @@ const Navbar = () => {
                         </div>
                             : <Link to="/login"><button type="submit" className="primary-btn py-2.5">Login</button></Link>
                     }
+                </div>
+
+                {/* ` */}
+                {/* for smaller device  */}
+                <div className="lg:hidden relative h-[75px] px-3 flex justify-between items-center">
+                    <Link to="/" className="flex font-medium items-center text-gray-900 md:mb-0">
+                        <img src={logo} width="50" alt="" />
+                        <span className={`ml-3 text-xl ${theme === 'light' ? "text-gray-900" : "text-gray-100"}`}>Language Guard</span>
+                    </Link >
+                    <div className="flex items-center">
+                        <button onClick={toggleTheme} className="mr-3">
+                            {
+                                theme === 'light' ? <MdModeNight size={20} />
+                                    : <MdLightMode size={20} />
+                            }
+                        </button>
+                        <div onClick={() => setOpen(!open)} >
+                            {
+                                open
+                                    ? <HiXMark className="h-8 w-8" />
+                                    : <HiBars3BottomRight className="h-8 w-8" />
+                            }
+                        </div>
+                    </div>
+
+                    <ul className={`nav-menu flex flex-col z-50 fixed gap-8 py-8 p-6 ${open ? 'top-[75px] left-0' : "top-[75px] -left-[1000px]"} duration-500 bg-[#122033] w-full h-screen border-t border-gray-700`}>
+                        <li><NavLink to="/" className={`default text-gray-300`}>Home</NavLink></li>
+                        <li><NavLink to="/instructors" className={`default text-gray-300`}>Instructors</NavLink></li>
+                        <li><NavLink to="/classes" className={`default text-gray-300`}>Classes</NavLink></li>
+                        <li><a href="/#contact" className={`default text-gray-300`}>Contact</a></li>
+                        {
+                            user && (role.isStudent ? (
+                                <li><NavLink to="/dashboard/mySelectedClasses" className={`default text-gray-300`}>Dashboard</NavLink></li>
+                            ) : role.isAdmin ? (
+                                <li><NavLink to="/dashboard/manageClasses" className={`default text-gray-300`}>Dashboard</NavLink></li>
+                            ) : (
+                                <li><NavLink to="/dashboard/addClass" className={`default text-gray-300`}>Dashboard</NavLink></li>
+                            ))
+                        }
+                        <li className="flex items-center gap-3">
+                            {user ? <><button onClick={handleSignOut} className="primary-btn py-2.5">Sign out</button>
+                                <img className="w-10 h-10 rounded-full cursor-pointer" src={user?.photoURL} alt="" /></>
+                                : <Link to="/login"><button type="submit" className="primary-btn py-2.5">Login</button></Link>
+                            }
+                        </li>
+                    </ul>
                 </div>
             </Container>
         </header>

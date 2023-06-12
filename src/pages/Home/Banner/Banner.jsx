@@ -10,7 +10,7 @@ import student2 from '../../../assets/student2.png'
 import student3 from '../../../assets/student3.png'
 
 const Banner = () => {
-    const { theme, toggleTheme } = useThemeContext()
+    const { theme } = useThemeContext()
 
     //TODO: change the banner image and made some changes in design
     return (
@@ -19,7 +19,7 @@ const Banner = () => {
             modules={[Navigation]}>
             <SwiperSlide className="relative">
                 <Container>
-                    <div className="flex py-20 md:flex-row flex-col items-center">
+                    <div className="flex px-4 md:px-0 py-20 md:flex-row flex-col items-center">
                         <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
                             <h1 className={`text-3xl sm:text-5xl mb-4 font-bold ${theme === 'light' ? 'text-gray-900': 'text-gray-100'}`}> Embark on a Global
                                 <br className="hidden lg:inline-block" /> Language Adventure

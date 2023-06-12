@@ -33,7 +33,7 @@ const FeedbackSection = () => {
                     modules={[Pagination, Navigation, A11y]}>
                     {
                         feedbacks.map(feedback => <SwiperSlide
-                            className="pt-24 mb-8 max-w-[31%] cursor-grab"
+                            className="px-4 md:px-0 pt-24 mb-8 max-w-full lg:max-w-[31%] cursor-grab"
                             key={feedback._id}
                         ><Feedback feedback={feedback} />
                         </SwiperSlide>)
