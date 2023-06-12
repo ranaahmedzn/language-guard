@@ -35,7 +35,7 @@ const Instructors = () => {
 
                             <div className={`${theme === 'light' ? "text-gray-900" : "text-gray-400"}`}>
                             <p className="leading-relaxed text-sm font-medium mb-3">{instructor.email}</p>
-                            <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+                            <p className="leading-relaxed text-base">Classes: Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
                             </div>
 
                             <div className="flex items-center gap-3 mt-4">

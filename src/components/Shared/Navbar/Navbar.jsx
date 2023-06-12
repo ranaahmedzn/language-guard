@@ -18,14 +18,17 @@ const Navbar = () => {
 
     const handleSignOut = () => {
         signOutUser()
-            .then(() => toast.success('Sign out successful!'))
+            .then(() => {
+                setOpenDropdown(!openDropdown)
+                toast.success('Sign out successful!')
+            })
             .then(error => console.log(error))
     }
 
     const [role] = useUserRole()
 
     return (
-        <header className={`${theme === 'light' ? 'text-gray-600' : 'text-gray-200'} shadow`}>
+        <header className={`${theme === 'light' ? 'bg-white text-gray-600' : 'text-gray-200'} shadow`}>
             <Container>
                 <div className="flex gap-5 py-3">
                     <p className="flex items-center gap-2 text-sm">
@@ -48,7 +51,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <hr className="border-0 h-[1px] bg-[#9999995e]" />
-                <div className="sticky top-0 z-10 py-5 flex flex-wrap flex-col md:flex-row items-center">
+                <div className="py-5 flex flex-wrap flex-col md:flex-row items-center">
                     <Link to="/" className="flex font-medium items-center text-gray-900 mb-4 md:mb-0">
                         <img src={logo} width="50" alt="" />
                         <span className={`ml-3 text-xl ${theme === 'light' ? "text-gray-900" : "text-gray-100"}`}>Language Guard</span>

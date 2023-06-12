@@ -4,10 +4,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 
 const Login = () => {
+    const [loading, setLoading] = useState(false)
     const [show, setShow] = useState(false)
     const { signInUser } = useContext(AuthContext)
 
@@ -17,18 +18,20 @@ const Login = () => {
 
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
-        console.log(data)
-
+        // console.log(data)
+        setLoading(true)
         signInUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user)
                 reset()
+                setLoading(false)
                 toast.success('Sing in successful!')
                 navigate(from, { replace: true })
             })
             .catch(error => {
                 console.log(error)
+                setLoading(false)
                 toast.error(error?.message)
             })
     };
@@ -60,7 +63,13 @@ const Login = () => {
                                     <div className="flex items-start mb-6 -mt-3">
                                         <label htmlFor="remember" className="text-sm font-medium text-gray-900 dark:text-gray-300">Forgot Password?</label>
                                     </div>
-                                    <div className="text-center"><button type="submit" className="primary-btn py-3">Login</button></div>
+                                    <div className="text-center"><button type="submit" className="primary-btn py-3 flex items-center gap-1">
+                                        {
+                                            loading ? <><span className="animate-spin">
+                                                <FaSpinner size={18} /></span><span>Login</span></>
+                                                : <span>Login</span>
+                                        }
+                                    </button></div>
                                 </form>
                             </div>
                         </div>

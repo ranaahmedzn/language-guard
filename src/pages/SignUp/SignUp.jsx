@@ -4,12 +4,13 @@ import { useForm } from 'react-hook-form';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import SocialLogin from '../../components/Shared/SocialLogin/SocialLogin';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { toast } from 'react-hot-toast';
 
 const SignUp = () => {
+    const [loading, setLoading] = useState(false)
     const [checked, setChecked] = useState(true)
     const [show, setShow] = useState(false)
     const { createUser, updateUserProfile, signOutUser } = useContext(AuthContext)
@@ -17,35 +18,37 @@ const SignUp = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data)
+        // console.log(data)
 
         if (data.password !== data.confirmPassword) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops..',
                 text: "Confirm password didn't matched!",
-              })
+            })
             return;
         }
         const newUser = { name: data.name, email: data.email, role: 'student', image: data.photoUrl }
 
+        setLoading(true)
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user)
                 reset()
+                setLoading(false)
                 toast.success('Sing up successful!')
 
                 updateUserProfile(data.name, data.photoUrl)
-                    .then(() => {})
+                    .then(() => { })
                     .catch((error => console.log(error)))
 
                 // call a post api to send users to the server 
                 axios.post('/users', newUser)
-                .then(res => {
-                    console.log(res.data)
-                })
-                .catch(error => console.log(error))
+                    .then(res => {
+                        console.log(res.data)
+                    })
+                    .catch(error => console.log(error))
 
                 if (!data.remember) {
                     signOutUser()
@@ -58,6 +61,7 @@ const SignUp = () => {
             })
             .catch(error => {
                 console.log(error)
+                setLoading(false)
                 toast.error(error?.message)
             })
     };
@@ -104,7 +108,13 @@ const SignUp = () => {
                                     </div>
                                     <label htmlFor="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
                                 </div>
-                                <div className="text-center"><button type="submit" className="primary-btn py-3">Sign Up</button></div>
+                                <div className="text-center"><button type="submit" className="primary-btn py-3 flex items-center gap-1">
+                                    {
+                                        loading ? <><span className="animate-spin">
+                                            <FaSpinner size={18} /></span><span>Sign up</span></>
+                                            : <span>Sign up</span>
+                                    }
+                                </button></div>
                             </form>
                         </div>
 

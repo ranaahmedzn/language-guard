@@ -5,6 +5,9 @@ import "swiper/css";
 import 'swiper/css/navigation';
 import SlideNavButtons from "../../../components/SlideNavButtons/SlideNavButtons";
 import useThemeContext from '../../../hooks/useThemeContext';
+import student1 from '../../../assets/student1.png'
+import student2 from '../../../assets/student2.png'
+import student3 from '../../../assets/student3.png'
 
 const Banner = () => {
     const { theme, toggleTheme } = useThemeContext()
@@ -16,7 +19,7 @@ const Banner = () => {
             modules={[Navigation]}>
             <SwiperSlide className="relative">
                 <Container>
-                    <div className="flex py-24 md:flex-row flex-col items-center">
+                    <div className="flex py-20 md:flex-row flex-col items-center">
                         <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
                             <h1 className={`text-3xl sm:text-5xl mb-4 font-bold ${theme === 'light' ? 'text-gray-900': 'text-gray-100'}`}> Embark on a Global
                                 <br className="hidden lg:inline-block" /> Language Adventure
@@ -27,7 +30,7 @@ const Banner = () => {
                             </div>
                         </div>
                         <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-                            <img className="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600" />
+                            <img className="object-cover object-center rounded" alt="" src={student1} />
                         </div>
                     </div>
                     <SlideNavButtons />
@@ -36,7 +39,7 @@ const Banner = () => {
 
             <SwiperSlide className='relative'>
                 <Container>
-                    <div className="flex py-24 md:flex-row flex-col items-center">
+                    <div className="flex py-20 md:flex-row flex-col items-center">
                         <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
                             <h1 className={`text-3xl sm:text-5xl mb-4 font-bold ${theme === 'light' ? 'text-gray-900': 'text-gray-100'}`}> Discover the Power
                                 <br className="hidden lg:inline-block" /> of Multilingualism
@@ -47,7 +50,7 @@ const Banner = () => {
                             </div>
                         </div>
                         <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-                            <img className="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600" />
+                            <img className="object-cover object-center rounded" alt="" src={student2} />
                         </div>
                     </div>
                     <SlideNavButtons />
@@ -56,7 +59,7 @@ const Banner = () => {
 
             <SwiperSlide className="relative">
                 <Container>
-                    <div className="flex py-24 md:flex-row flex-col items-center">
+                    <div className="flex py-20 md:flex-row flex-col items-center">
                         <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
                             <h1 className={`text-3xl sm:text-5xl mb-4 font-bold ${theme === 'light' ? 'text-gray-900': 'text-gray-100'}`}>  Empowering Minds via
                                 <br className="hidden lg:inline-block" /> Language Proficiency
@@ -67,7 +70,7 @@ const Banner = () => {
                             </div>
                         </div>
                         <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-                            <img className="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600" />
+                            <img className="object-cover object-center rounded" alt="" src={student3} />
                         </div>
                     </div>
                     <SlideNavButtons />
