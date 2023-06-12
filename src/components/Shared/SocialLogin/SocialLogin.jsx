@@ -5,11 +5,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
-import useUserRole from '../../../hooks/useUserRole';
 
 const SocialLogin = () => {
     const {googleSingIn} = useContext(AuthContext)
-    const [, , refetch] = useUserRole()
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
@@ -18,14 +16,13 @@ const SocialLogin = () => {
         googleSingIn()
         .then(result => {
             const user = result.user;
-            console.log(user)
+            // console.log(user)
             toast.success('Successfully login with google!');
 
             const newUser = {name: user.displayName, email: user.email, role: 'student', image: user.photoURL}
             // call a post api to send users to the server 
             axios.post('/users', newUser)
             .then(res => {
-                refetch()
                 console.log(res.data)
             })
             .catch(error => console.log(error))

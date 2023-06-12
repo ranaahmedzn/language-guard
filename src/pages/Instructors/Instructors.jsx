@@ -23,8 +23,8 @@ const Instructors = () => {
             </Helmet>
             <Container>
                 <div className="text-center w-2/3 mx-auto space-y-4 mb-12">
-                    <h2 className={`text-3xl font-bold ${theme === 'light' ? "text-gray-900" : "text-gray-100"}`}>Explore our popular classes</h2>
-                    <p className={`${theme === 'light' ? "text-gray-900" : "text-gray-400"}`}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui autem quae explicabo, eveniet quasi perferendis rem commodi eum praesentium! Dolores ullam nostrum beatae a ducimus.</p>
+                    <h2 className={`text-3xl font-bold ${theme === 'light' ? "text-gray-900" : "text-gray-100"}`}>Our Expert Instructors</h2>
+                    <p className={`${theme === 'light' ? "text-gray-900" : "text-gray-400"}`}>Experience Personalized Language Instruction from our Expert Instructors</p>
                 </div>
 
 

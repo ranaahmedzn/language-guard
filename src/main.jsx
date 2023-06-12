@@ -12,7 +12,7 @@ import { HelmetProvider } from 'react-helmet-async';
 
 const queryClient = new QueryClient()
 
-axios.defaults.baseURL = "http://localhost:5000"
+axios.defaults.baseURL = "https://language-guard-server.vercel.app"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <QueryClientProvider client={queryClient}>

@@ -5,18 +5,22 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuthInfo from "../../../hooks/useAuthInfo";
 import Swal from "sweetalert2";
 import useBookings from "../../../hooks/useBookings";
+import { FaSpinner } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const PaymentForm = ({ price, bookingId, classId }) => {
     const stripe = useStripe();
     const elements = useElements();
-
+    
     const [cardError, setCardError] = useState("")
     const [clientSecret, setClientSecret] = useState("")
     const [transactionId, setTransactionId] = useState("")
-    
-    const {user} = useAuthInfo()
+    const [processing, setProcessing] = useState(false)
+
+    const { user } = useAuthInfo()
     const [axiosSecure] = useAxiosSecure()
     const [, refetch] = useBookings()
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (price > 0) {
@@ -41,6 +45,7 @@ const PaymentForm = ({ price, bookingId, classId }) => {
             return;
         }
 
+        setProcessing(true)
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card,
@@ -67,13 +72,14 @@ const PaymentForm = ({ price, bookingId, classId }) => {
             },
         );
 
-        if(confirmError){
+        if (confirmError) {
             console.log(confirmError)
         }
 
+        setProcessing(false)
         if (paymentIntent.status === 'succeeded') {
             setTransactionId(paymentIntent.id)
-            console.log(paymentIntent)
+            // console.log(paymentIntent)
 
             const payment = {
                 transactionId: paymentIntent.id,
@@ -89,6 +95,7 @@ const PaymentForm = ({ price, bookingId, classId }) => {
                 .then(res => {
                     console.log(res.data)
                     refetch()
+                    navigate('/dashboard/mySelectedClasses', {replace: true})
                     Swal.fire(
                         'Payment successful!',
                         'success'
@@ -116,8 +123,12 @@ const PaymentForm = ({ price, bookingId, classId }) => {
                         },
                     }}
                 />
-                <button type="submit" className="primary-btn py-2.5 mt-4" disabled={!stripe}>
-                    Payment
+                <button type="submit" className="primary-btn py-2.5 mt-4 flex items-center gap-1" disabled={!stripe || !clientSecret || processing}>
+                    {
+                        processing ? <><span className="animate-spin">
+                            <FaSpinner size={18} /></span><span>Pay</span></>
+                            : <span>Pay</span>
+                    }
                 </button>
             </form>
             <p className="text-rose-500 text-lg font-medium">{cardError}</p>

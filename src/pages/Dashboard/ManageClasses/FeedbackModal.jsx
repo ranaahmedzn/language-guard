@@ -15,7 +15,17 @@ const FeedbackModal = ({ id, setOpenModal }) => {
         console.log(data.message)
         const feedback = data.message;
 
-        axiosSecure.patch(`/classes/feedback/${id}`, {feedback})
+        if (!feedback) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Oops..',
+                text: 'Please write a feedback message first!',
+            })
+            setLoading(false)
+            return;
+        }
+
+        axiosSecure.patch(`/classes/feedback/${id}`, { feedback })
             .then(res => {
                 if (res.data.modifiedCount) {
                     reset()
@@ -42,7 +52,7 @@ const FeedbackModal = ({ id, setOpenModal }) => {
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="mb-3">
                                 <textarea id="message" {...register("message")} name="message" rows="4" className="py-2 px-3 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-transparent bg-gray-200 text-gray-600" placeholder="Write message here.."></textarea>
-                            </div> 
+                            </div>
 
                             <div className="flex justify-end items-center gap-2 ">
                                 <button onClick={() => setOpenModal(false)} className="primary-btn py-2">Close</button>

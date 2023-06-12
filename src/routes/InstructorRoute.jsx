@@ -1,6 +1,7 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuthInfo from "../hooks/useAuthInfo";
 import useUserRole from "../hooks/useUserRole";
+import Loading from "../pages/Loading/Loading";
 
 const InstructorRoute = ({children}) => {
     const { user, loading } = useAuthInfo()
@@ -8,7 +9,7 @@ const InstructorRoute = ({children}) => {
     const [role, roleLoading] = useUserRole()
 
     if (loading || roleLoading) {
-        return <h2 className="text-3xl font-bold text-center">Loading..</h2> //TODO: add loading page
+        return <Loading />
     }
 
     if (user && role.isInstructor) {

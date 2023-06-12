@@ -109,9 +109,9 @@ const AddClass = () => {
                     <div className="mt-4">
                         <button type="submit" className="primary-btn py-3 flex items-center gap-1">
                             {
-                                loading ? <><span className="animate-spin"><FaSpinner size={18} /></span><span>Select</span></>
+                                loading ? <><span className="animate-spin"><FaSpinner size={18} /></span><span>Add</span></>
                                     : <><MdLibraryAdd size={16} />
-                                    <span>Select</span></>
+                                    <span>Add</span></>
                             }
                         </button>
                     </div>

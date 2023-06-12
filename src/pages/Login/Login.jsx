@@ -7,13 +7,11 @@ import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
 import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
-import useUserRole from "../../hooks/useUserRole";
 
 const Login = () => {
     const [loading, setLoading] = useState(false)
     const [show, setShow] = useState(false)
     const { signInUser } = useContext(AuthContext)
-    const [, , refetch] = useUserRole()
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -30,7 +28,6 @@ const Login = () => {
                 reset()
                 setLoading(false)
                 toast.success('Sing in successful!')
-                refetch()
                 navigate(from, { replace: true })
             })
             .catch(error => {

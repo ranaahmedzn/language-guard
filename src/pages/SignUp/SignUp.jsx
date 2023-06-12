@@ -9,7 +9,6 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { toast } from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
-import useUserRole from '../../hooks/useUserRole';
 
 const SignUp = () => {
     const [loading, setLoading] = useState(false)
@@ -17,7 +16,6 @@ const SignUp = () => {
     const [show, setShow] = useState(false)
     const { createUser, updateUserProfile, signOutUser } = useContext(AuthContext)
     const navigate = useNavigate()
-    const [, , refetch] = useUserRole()
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -50,7 +48,6 @@ const SignUp = () => {
                 axios.post('/users', newUser)
                     .then(res => {
                         console.log(res.data)
-                        refetch()
                         navigate('/', {replace: true})
                     })
                     .catch(error => console.log(error))

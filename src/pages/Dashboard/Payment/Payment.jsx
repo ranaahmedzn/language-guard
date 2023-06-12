@@ -21,14 +21,14 @@ const Payment = () => {
     const price = parseInt(booking?.price);
 
     const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_PK)
-
+    console.log(price)
     return (
         <div>
             <Helmet>
                 <title>Payment - Language Guard</title>
             </Helmet>
             <DashboardNav name="Payment" />
-            <h2 className="font-bold text-2xl mb-6">Your course Price: ${price}</h2>
+            <h2 className="font-bold text-2xl mb-6 pt-6 pb-3">Your course Price: ${price && price}</h2>
             <Elements stripe={stripePromise}>
                 <PaymentForm price={price} bookingId={id} classId={booking.classId} />
             </Elements>

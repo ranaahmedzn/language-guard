@@ -22,7 +22,7 @@ const Contact = () => {
     const { theme } = useThemeContext()
 
     return (
-        <section id="contact" className={`px-4 md:px-0 py-16 ${theme === 'light' && "bg-[#122033]"}`}>
+        <section id="contact" className={`px-4 md:px-0 py-16 md:mt-10 ${theme === 'light' && "bg-[#122033]"}`}>
             <Container>
                 <div className="max-w-lg mx-auto text-white">
                     <div className="text-center">

@@ -11,11 +11,10 @@ const PopularInstructors = () => {
             return res.data;
         }
     })
-
     const { theme } = useThemeContext()
 
     return (
-        <div className="px-4 md:px-0 py-16 md:py-20">
+        <div className="px-4 md:px-0 md:pt-10 md:pb-20">
             <div className="text-center w-full md:w-2/3 lg:w-2/4 mx-auto space-y-5 mb-10">
                 <h2 className={`text-3xl font-bold ${theme === 'light' ? "text-gray-900" : "text-gray-100"}`}>Meet our top Instructors</h2>
                 <p className={`${theme === 'light' ? "text-gray-900" : "text-gray-400"}`}>Unveiling the Masters of Language Education: Get Inspired by the Unparalleled Expertise, Passion, and Teaching Excellence of our Top Instructors</p>

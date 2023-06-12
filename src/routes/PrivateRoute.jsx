@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Navigate, useLocation } from "react-router-dom";
+import Loading from "../pages/Loading/Loading";
 
 const PrivateRoute = ({children}) => {
     const {user, loading} = useContext(AuthContext)
     const location = useLocation()
 
     if(loading){
-        return <h2 className="text-3xl font-bold text-center">Loading..</h2> //TODO: add loading page
+        return <Loading />
     }
 
     if(user){
