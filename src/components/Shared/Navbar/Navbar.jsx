@@ -3,7 +3,7 @@ import './Navbar.css'
 import Container from "../../Container/Container";
 import logo from "../../../assets/logo.png"
 import { FaEnvelope, FaFacebook, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhone, FaTwitter } from "react-icons/fa";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useUserRole from "../../../hooks/useUserRole";
 import { toast } from "react-hot-toast";
@@ -12,6 +12,7 @@ import { ThemeContext } from "../../../providers/ThemeProvider";
 
 
 const Navbar = () => {
+    const [openDropdown, setOpenDropdown] = useState(false)
     const { user, signOutUser } = useContext(AuthContext)
     const { theme, toggleTheme } = useContext(ThemeContext)
 
@@ -67,15 +68,30 @@ const Navbar = () => {
                             ))
                         }
                     </nav>
-                    <button onClick={toggleTheme} className="mr-2.5">
+                    <button onClick={toggleTheme} className="mr-3">
                         {
                             theme === 'light' ? <MdModeNight size={20} />
                                 : <MdLightMode size={20} />
                         }
                     </button>
-                    {/* TODO: display user profile image and a tooltip when hover profile image */}
                     {
-                        user ? <button onClick={handleSignOut} type="submit" className="primary-btn py-2.5">Sign out</button>
+                        user ? <div className="relative">
+                            <img onClick={() => setOpenDropdown(!openDropdown)} type="button" className="w-10 h-10 rounded-full cursor-pointer" src={user?.photoURL} alt="" />
+                            <div className={`${openDropdown ? "block" : "hidden"} absolute right-0 mt-2 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow border border-gray-100 w-44`}>
+                                <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                                    <div>{user?.displayName}</div>
+                                    <div className="font-medium truncate">{user?.email}</div>
+                                </div>
+                                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                                    <li>
+                                        <Link  className="block px-4 py-2 w-full hover:bg-gray-100">Dashboard</Link>
+                                    </li>
+                                </ul>
+                                <div className="py-1">
+                                    <button onClick={handleSignOut} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left">Sign out</button>
+                                </div>
+                            </div>
+                        </div>
                             : <Link to="/login"><button type="submit" className="primary-btn py-2.5">Login</button></Link>
                     }
                 </div>
@@ -85,3 +101,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+{/* <button onClick={handleSignOut} type="submit" className="primary-btn py-2.5">Sign out</button> */ }

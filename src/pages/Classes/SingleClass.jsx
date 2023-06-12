@@ -6,14 +6,16 @@ import { AuthContext } from "../../providers/AuthProvider";
 import useBookings from "../../hooks/useBookings";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useUserRole from "../../hooks/useUserRole";
+import { useNavigate } from "react-router-dom";
 
 const SingleClass = ({ singleClass }) => {
     const [loading, setLoading] = useState(false)
     const { user } = useContext(AuthContext)
     const [, refetch] = useBookings()
     const [axiosSecure] = useAxiosSecure()
-
     const [role] = useUserRole()
+
+    const navigate = useNavigate()
 
     const { _id, name, image, instructorName, instructorImage, instructorEmail, price, availableSeats, students } = singleClass || {}
 
@@ -42,6 +44,7 @@ const SingleClass = ({ singleClass }) => {
                 title: 'Oops..',
                 text: 'You have to login to select classes!',
             })
+            navigate('/login', {replace: true})
         }
     }
 
