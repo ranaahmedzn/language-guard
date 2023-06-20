@@ -21,7 +21,7 @@ const Payment = () => {
     const price = parseInt(booking?.price);
 
     const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_PK)
-    console.log(price)
+
     return (
         <div>
             <Helmet>

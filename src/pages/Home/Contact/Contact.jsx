@@ -2,15 +2,19 @@ import { useForm } from "react-hook-form";
 import Container from "../../../components/Container/Container";
 import Swal from "sweetalert2";
 import useThemeContext from "../../../hooks/useThemeContext";
+import { useState } from "react";
+import { FaSpinner } from "react-icons/fa";
 
 const Contact = () => {
+    const [loading, setLoading] = useState(false)
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
-        const contactInfo = data;
-        console.log(contactInfo)
+        // const contactInfo = data;
+        setLoading(true)
 
         setTimeout(() => {
             reset()
+            setLoading(false)
             Swal.fire(
                 'Message sent!',
                 'We will contact you soon. Thanks for your message😊',
@@ -41,7 +45,7 @@ const Contact = () => {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                                     <div>
                                         <label htmlFor="firstName" className="block text-sm font-medium text-white mb-1">First Name</label>
-                                        <input type="text" {...register("firstName")} name="firstName" id="firstName" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-0 bg-gray-700 text-gray-300" />
+                                        <input type="text" {...register("firstName")} name="firstName" id="firstName" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-0 bg-gray-700 text-gray-300" required />
                                     </div>
 
                                     <div>
@@ -53,7 +57,7 @@ const Contact = () => {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                                     <div>
                                         <label htmlFor="email" className="block text-sm font-medium text-white mb-1">Email</label>
-                                        <input type="email" {...register("email")} name="email" id="email" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-0 bg-gray-700 text-gray-300" />
+                                        <input type="email" {...register("email")} name="email" id="email" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-0 bg-gray-700 text-gray-300" required />
                                     </div>
 
                                     <div>
@@ -64,12 +68,17 @@ const Contact = () => {
 
                                 <div>
                                     <label htmlFor="message" className="block text-sm font-medium text-white mb-1">Message</label>
-                                    <textarea id="message" {...register("message")} name="message" rows="4" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-transparent bg-gray-700 text-gray-300"></textarea>
+                                    <textarea id="message" {...register("message")} name="message" rows="4" className="py-3 px-4 block w-full rounded-md text-sm focus:ring-[#FEBC1E] focus:border-transparent bg-gray-700 text-gray-300" required></textarea>
                                 </div>
                             </div>
 
                             <div className="mt-6 grid">
-                                <button type="submit" className="primary-btn py-3">Send Message</button>
+                                <button type="submit" className="primary-btn py-3 flex justify-center items-center gap-1">
+                                    {
+                                        loading ? <><span className="animate-spin"><FaSpinner size={18} /></span><span>Send Message</span></>
+                                            : <span>Send Message</span>
+                                    }
+                                </button>
                             </div>
                         </form>
                     </div>

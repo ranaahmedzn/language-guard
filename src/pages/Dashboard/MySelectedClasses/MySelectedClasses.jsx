@@ -31,7 +31,7 @@ const MySelectedClasses = () => {
                             )
                         }
                     })
-                    .catch(error => console.log(error))
+                    .catch(error => {})
             }
         })
     }

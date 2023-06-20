@@ -15,12 +15,12 @@ const DashboardNav = ({name, number}) => {
                 toast.success('Sign out successful!')
                 navigate('/', {replace: true})
             })
-            .then(error => console.log(error))
+            .then(error => {})
     }
 
     return (
         <div className="bg-yellow-200 rounded-xl flex p-5 items-center">
-            <h2 className="flex-grow text-2xl font-semibold">{name}{number && <>: {number}</>}</h2>
+            <h2 className="flex-grow text-2xl font-semibold">{name}{parseInt(number) > 0 ? <>: {number}</> : <>: {number}</>}</h2>
             {
                 user ? <div className="relative">
                     <img onClick={() => setOpenDropdown(!openDropdown)} type="button" className="w-10 h-10 rounded-full cursor-pointer" src={user?.photoURL} alt="" />

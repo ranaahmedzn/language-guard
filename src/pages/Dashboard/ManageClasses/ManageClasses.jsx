@@ -15,25 +15,25 @@ const ManageClasses = () => {
     const handleApprove = (id) => {
         axiosSecure.patch(`/classes/${id}`)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             if(res.data.modifiedCount){
                 refetch()
                 toast.success('Approved successful!');
             }
         })
-        .catch(error => console.log(error))
+        .catch(error => {})
     }
 
     const handleDeny = (id) => {
         axiosSecure.put(`/classes/${id}`)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             if(res.data.modifiedCount){
                 refetch()
                 toast.success('Denied successful!')
             }
         })
-        .catch(error => console.log(error))
+        .catch(error => {})
     }
 
     return (
@@ -42,11 +42,11 @@ const ManageClasses = () => {
                 <title>Manage Classes - Language Guard</title>
             </Helmet>
             <DashboardNav name="Manage Classes" number={classes.length} />
-            <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {
                     classes.map((singleClass) => <div
                     key={singleClass._id}
-                    className="w-full h-full border-2 border-gray-200 border-opacity-70 rounded-lg overflow-hidden">
+                    className="w-full border-2 border-gray-200 border-opacity-70 rounded-lg overflow-hidden">
                     <img src={singleClass.image} className="lg:h-48 md:h-36 w-full object-cover object-center" alt="" />
         
                     <div className={`px-6 pt-6 ${singleClass.availableSeats === 0 && "bg-rose-400"}`}>

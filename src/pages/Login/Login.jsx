@@ -24,14 +24,14 @@ const Login = () => {
         signInUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user)
+                // console.log(user)
                 reset()
                 setLoading(false)
                 toast.success('Sing in successful!')
                 navigate(from, { replace: true })
             })
             .catch(error => {
-                console.log(error)
+                // console.log(error)
                 setLoading(false)
                 toast.error(error?.message)
             })

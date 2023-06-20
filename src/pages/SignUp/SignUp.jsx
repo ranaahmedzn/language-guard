@@ -35,22 +35,22 @@ const SignUp = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user)
+                // console.log(user)
                 reset()
                 setLoading(false)
                 toast.success('Sing up successful!')
 
                 updateUserProfile(data.name, data.photoUrl)
                     .then(() => { })
-                    .catch((error => console.log(error)))
+                    .catch((error => {}))
 
                 // call a post api to send users to the server 
                 axios.post('/users', newUser)
                     .then(res => {
-                        console.log(res.data)
+                        // console.log(res.data)
                         navigate('/', {replace: true})
                     })
-                    .catch(error => console.log(error))
+                    .catch(error => {})
 
                 if (!data.remember) {
                     signOutUser()
@@ -58,11 +58,11 @@ const SignUp = () => {
                             navigate("/login")
                             toast("Login with to your account.")
                         })
-                        .catch(error => console.log(error))
+                        .catch(error => {})
                 }
             })
             .catch(error => {
-                console.log(error)
+                // console.log(error)
                 setLoading(false)
                 toast.error(error?.message)
             })

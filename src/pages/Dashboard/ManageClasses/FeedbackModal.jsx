@@ -12,7 +12,7 @@ const FeedbackModal = ({ id, setOpenModal }) => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         setLoading(true)
-        console.log(data.message)
+        // console.log(data.message)
         const feedback = data.message;
 
         if (!feedback) {
@@ -37,7 +37,7 @@ const FeedbackModal = ({ id, setOpenModal }) => {
                     )
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => {})
     }
 
     return (

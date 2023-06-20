@@ -17,7 +17,10 @@ const GiveFeedback = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         if (!rating) {
-            alert("Please give a rating")
+            Swal.fire({
+                icon: 'info',
+                title: 'Please give a rating!',
+            })
             return;
         }
         const { name, email, details } = data
@@ -36,7 +39,7 @@ const GiveFeedback = () => {
                     )
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => { })
     };
 
     return (

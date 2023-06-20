@@ -24,7 +24,7 @@ const Navbar = () => {
                 setOpenDropdown(!openDropdown)
                 toast.success('Sign out successful!')
             })
-            .then(error => console.log(error))
+            .then(err => { })
     }
 
     const [role] = useUserRole()
@@ -90,11 +90,22 @@ const Navbar = () => {
                                     <div>{user?.displayName}</div>
                                     <div className="font-medium truncate">{user?.email}</div>
                                 </div>
-                                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+
+                                <ul className="py-2 text-sm text-gray-700" aria-labelledby="avatarButton">
+                                    {role.isStudent ?
                                     <li>
-                                        <Link className="block px-4 py-2 w-full hover:bg-gray-100">Dashboard</Link>
+                                        <Link to="/dashboard/mySelectedClasses" className="block px-4 py-2 w-full hover:bg-gray-100">Dashboard</Link>
                                     </li>
+                                    : role.isAdmin ?
+                                    <li>
+                                        <Link to="/dashboard/manageClasses" className="block px-4 py-2 w-full hover:bg-gray-100">Dashboard</Link>
+                                    </li>
+                                    :
+                                    <li>
+                                        <Link to="/dashboard/addClass" className="block px-4 py-2 w-full hover:bg-gray-100">Dashboard</Link>
+                                    </li>}
                                 </ul>
+
                                 <div className="py-1">
                                     <button onClick={handleSignOut} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left">Sign out</button>
                                 </div>

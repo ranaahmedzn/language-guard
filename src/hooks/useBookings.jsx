@@ -5,6 +5,7 @@ import useAxiosSecure from "./useAxiosSecure";
 const useBookings = () => {
     const { user, loading } = useAuthInfo()
     const [axiosSecure] = useAxiosSecure()
+    // console.log(!!user, !loading)
 
     const { data: bookings = [], refetch } = useQuery({
         queryKey: ['bookings', user?.email],

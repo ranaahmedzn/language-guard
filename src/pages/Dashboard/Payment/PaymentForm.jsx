@@ -26,7 +26,7 @@ const PaymentForm = ({ price, bookingId, classId }) => {
         if (price > 0) {
             axiosSecure.post('/create-payment-intent', { price })
                 .then(res => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     setClientSecret(res.data.clientSecret)
                 })
         }
@@ -53,11 +53,11 @@ const PaymentForm = ({ price, bookingId, classId }) => {
 
         if (error) {
             setCardError(error.message)
-            console.log('[error]', error);
+            // console.log('[error]', error);
         }
         else {
             setCardError("")
-            console.log('[PaymentMethod]', paymentMethod);
+            // console.log('[PaymentMethod]', paymentMethod);
         }
 
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret,
@@ -73,7 +73,7 @@ const PaymentForm = ({ price, bookingId, classId }) => {
         );
 
         if (confirmError) {
-            console.log(confirmError)
+            // console.log(confirmError)
         }
 
         setProcessing(false)
@@ -93,7 +93,7 @@ const PaymentForm = ({ price, bookingId, classId }) => {
 
             axiosSecure.post('/payments', payment)
                 .then(res => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     refetch()
                     navigate('/dashboard/mySelectedClasses', {replace: true})
                     Swal.fire(

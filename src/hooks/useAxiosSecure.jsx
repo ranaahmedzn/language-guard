@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useAuthInfo from "./useAuthInfo";
 
 const axiosSecure = axios.create({
-    baseURL: "https://language-guard-server.vercel.app"
+    baseURL: "http://localhost:5000"
 })
 
 const useAxiosSecure = () => {
@@ -12,8 +12,10 @@ const useAxiosSecure = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        axiosSecure.interceptors.request.use(request => {
-            const token = localStorage.getItem('access-token')
+        axiosSecure.interceptors.request.use((request) => {
+            const token = localStorage.getItem('access-token');
+            // console.log(token)
+
             if (token) {
                 request.headers.authorization = `Bearer ${token}`
             }
@@ -22,9 +24,9 @@ const useAxiosSecure = () => {
 
         axiosSecure.interceptors.response.use(response => {
             return response
-        }, (error) => {
+        }, async (error) => {
             if (error.response && error.response?.status === 401 || error.response?.status === 403) {
-                signOutUser()
+                await signOutUser()
                 navigate('/', { replace: true })
             }
             return Promise.reject(error)

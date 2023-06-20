@@ -8,6 +8,8 @@ const Classes = () => {
     const [classes] = useClasses()
     const { theme } = useThemeContext()
 
+    const approvedClasses = classes.filter(singleClass => singleClass.status === "approved")
+
     return (
         <section className="my-16">
             <Helmet>
@@ -21,7 +23,7 @@ const Classes = () => {
                 
                 <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                     {
-                        classes.map(singleClass => <SingleClass
+                        approvedClasses.map(singleClass => <SingleClass
                         key={singleClass._id}
                         singleClass={singleClass}
                         ></SingleClass>)

@@ -36,7 +36,7 @@ const SingleClass = ({ singleClass }) => {
                         )
                     }
                 })
-                .catch(error => console.log(error))
+                .catch(error => {})
         }
         else {
             Swal.fire({

@@ -18,25 +18,25 @@ const ManageUsers = () => {
     const handleMakeInstructor = (id, name) => {
         axiosSecure.patch(`/users/${id}`)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             if(res.data.modifiedCount){
                 refetch()
                 toast.success(`${name} is now Instructor!`)
             }
         })
-        .catch(error => console.log(error))
+        .catch(error => {})
     }
 
     const handleMakeAdmin = (id, name) => {
         axiosSecure.put(`/users/${id}`)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             if(res.data.modifiedCount){
                 refetch()
                 toast.success(`${name} is now Admin!`)
             }
         })
-        .catch(error => console.log(error))
+        .catch(error => {})
     }
 
     return (

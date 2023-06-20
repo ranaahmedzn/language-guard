@@ -26,7 +26,7 @@ const AddClass = () => {
         const availableSeats = form.availableSeats.value;
         const price = form.price.value;
 
-        console.log(name, image, instructorName, instructorEmail, availableSeats, price)
+        // console.log(name, image, instructorName, instructorEmail, availableSeats, price)
 
         const formData = new FormData()
         formData.append('image', image)
@@ -55,7 +55,7 @@ const AddClass = () => {
                                 )
                             }
                         })
-                        .catch(error => console.log(error))
+                        .catch(error => {})
                 }
             })
     }
@@ -66,7 +66,7 @@ const AddClass = () => {
                 <title>Add Class - Language Guard</title>
             </Helmet>
             <DashboardNav name="Add Class" />
-            <div className="bg-gray-200 w-2/3 mx-auto mt-8 flex flex-col p-4 sm:p-6 lg:p-8 dark:border-gray-700 rounded-lg">
+            <div className="bg-gray-200 w-2/3 mx-auto mt-10 flex flex-col p-4 sm:p-6 lg:p-8 dark:border-gray-700 rounded-lg">
                 <form onSubmit={handleAddClass}>
                     <div className="grid">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
@@ -96,7 +96,7 @@ const AddClass = () => {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                             <div>
                                 <label htmlFor="availableSeats" className="block text-sm font-medium text-black mb-1">Available Seats</label>
-                                <input type="text" name="availableSeats" id="availableSeats" className="py-2.5 px-3 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Enter available seat" required />
+                                <input type="number" name="availableSeats" id="availableSeats" className="py-2.5 px-3 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Enter available seat" required />
                             </div>
 
                             <div>

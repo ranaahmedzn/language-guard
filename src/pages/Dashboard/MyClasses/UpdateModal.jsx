@@ -44,7 +44,7 @@ const UpdateModal = ({id, setOpenModal }) => {
                                 )
                             }
                         })
-                        .catch(error => console.log(error))
+                        .catch(error => {})
                 }
             })
     }

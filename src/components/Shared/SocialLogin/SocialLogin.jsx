@@ -23,9 +23,9 @@ const SocialLogin = () => {
             // call a post api to send users to the server 
             axios.post('/users', newUser)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
             })
-            .catch(error => console.log(error))
+            .catch(error => {})
 
             navigate(from, {replace: true})
         })
