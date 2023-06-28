@@ -10,13 +10,13 @@ const Footer = () => {
 
     const handleSubscribe = (event) => {
         event.preventDefault()
-        setTimeout( () => {
+        setTimeout(() => {
             event.target.reset()
             Swal.fire(
                 'Subscribed!',
                 'Thanks for your subscription!',
                 'success'
-              )
+            )
         }, 700)
     }
 
@@ -82,19 +82,19 @@ const Footer = () => {
                             <h2 className="text-xl font-medium text-white mb-5">NavLinks</h2>
                             <nav className="list-none mb-10 text-[#AEB2C2] space-y-3">
                                 <li>
-                                    <Link>Home</Link>
+                                    <Link to='/'>Home</Link>
                                 </li>
                                 <li>
-                                    <Link>Instructor</Link>
+                                    <Link to='/instructors'>Instructors</Link>
                                 </li>
                                 <li>
-                                    <Link>Courses</Link>
+                                    <Link to='/classes'>Classes</Link>
                                 </li>
                                 <li>
                                     <Link>About Us</Link>
                                 </li>
                                 <li>
-                                    <Link>Contact</Link>
+                                    <a href='/#contact'>Contact</a>
                                 </li>
                             </nav>
                         </div>
@@ -125,10 +125,10 @@ const Footer = () => {
                                     <Link>Home</Link>
                                 </li>
                                 <li>
-                                    <Link>Instructor</Link>
+                                    <Link>Instructors</Link>
                                 </li>
                                 <li>
-                                    <Link>Courses</Link>
+                                    <Link>Classes</Link>
                                 </li>
                                 <li>
                                     <Link>About Us</Link>
@@ -138,7 +138,7 @@ const Footer = () => {
                                 </li>
                             </nav>
                         </div>
-                        
+
 
                     </div>
                 </div>

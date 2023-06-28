@@ -4,10 +4,11 @@ import Container from "../../components/Container/Container";
 import { FaArrowRight } from "react-icons/fa";
 import useThemeContext from "../../hooks/useThemeContext";
 import { Helmet } from "react-helmet-async";
+import Loading from "../Loading/Loading";
 
 const Instructors = () => {
 
-    const { data: instructors = [] } = useQuery({
+    const { data: instructors = [], isLoading } = useQuery({
         queryKey: ['instructors'],
         queryFn: async () => {
             const res = await axios(`/instructors`);
@@ -15,6 +16,10 @@ const Instructors = () => {
         }
     })
     const { theme } = useThemeContext()
+
+    if(isLoading){
+        return <Loading />
+    }
 
     return (
         <section className="text-gray-600 py-16">

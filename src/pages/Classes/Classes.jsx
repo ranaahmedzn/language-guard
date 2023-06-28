@@ -3,12 +3,17 @@ import SingleClass from "./SingleClass";
 import useClasses from "../../hooks/useClasses";
 import useThemeContext from "../../hooks/useThemeContext";
 import { Helmet } from "react-helmet-async";
+import Loading from "../Loading/Loading";
 
 const Classes = () => {
-    const [classes] = useClasses()
+    const [classes, , isLoading] = useClasses()
     const { theme } = useThemeContext()
 
     const approvedClasses = classes.filter(singleClass => singleClass.status === "approved")
+
+    if(isLoading){
+        return <Loading />
+    }
 
     return (
         <section className="my-16">
