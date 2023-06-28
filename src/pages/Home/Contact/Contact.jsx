@@ -2,25 +2,31 @@ import { useForm } from "react-hook-form";
 import Container from "../../../components/Container/Container";
 import Swal from "sweetalert2";
 import useThemeContext from "../../../hooks/useThemeContext";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { FaSpinner } from "react-icons/fa";
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
     const [loading, setLoading] = useState(false)
     const { register, handleSubmit, reset } = useForm();
+    const form = useRef();
+
     const onSubmit = data => {
-        // const contactInfo = data;
         setLoading(true)
 
-        setTimeout(() => {
-            reset()
-            setLoading(false)
-            Swal.fire(
-                'Message sent!',
-                'We will contact you soon. Thanks for your message😊',
-                'success'
-            )
-        }, 700)
+        emailjs.sendForm('service_y70cm1w', 'template_d3ywpu9', form.current, 'k8QpfSMEYotKVDtjU')
+            .then((result) => {
+                // console.log(result.text);
+                reset()
+                setLoading(false)
+                Swal.fire(
+                    'Message sent!',
+                    'We will contact you soon. Thanks for your message😊',
+                    'success'
+                )
+            }, (error) => {
+                // console.log(error.text);
+            });
     };
 
     const { theme } = useThemeContext()
@@ -40,7 +46,7 @@ const Contact = () => {
 
                 <div className="bg-gray-900 rounded-lg mt-6 max-w-lg mx-auto">
                     <div className="flex flex-col p-4 sm:p-6 lg:p-8 dark:border-gray-700">
-                        <form onSubmit={handleSubmit(onSubmit)}>
+                        <form ref={form} onSubmit={handleSubmit(onSubmit)}>
                             <div className="grid gap-4 lg:gap-6">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                                     <div>
