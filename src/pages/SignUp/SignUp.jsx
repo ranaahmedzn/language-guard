@@ -74,9 +74,9 @@ const SignUp = () => {
                 <title>Sign up - Language Guard</title>
             </Helmet>
             <Container>
-                <div className="py-28">
-                    <div className="mx-auto w-2/3 flex flex-row-reverse rounded-lg shadow-xl overflow-hidden">
-                        <div className="w-1/2 p-10 bg-white">
+                <div className="py-28 px-4">
+                    <div className="mx-auto w-full md:w-2/3 flex flex-col md:flex-row-reverse rounded-lg shadow-xl overflow-hidden">
+                        <div className="w-full md:w-1/2 p-6 md:p-10 bg-white">
                             <h3 className="text-3xl font-bold text-center mb-6">Sign Up</h3>
                             <SocialLogin></SocialLogin>
                             <form onSubmit={handleSubmit(onSubmit)}>
@@ -123,7 +123,7 @@ const SignUp = () => {
                             </form>
                         </div>
 
-                        <div className="w-1/2 bg-red-500 text-white p-10">
+                        <div className="w-full md:w-1/2 bg-red-500 text-white p-10">
                             <div className="h-full flex flex-col justify-center items-center text-center space-y-4">
                                 <h3 className="text-3xl font-bold">Welcome, Back!</h3>
                                 <p>To keep connected with us please login with your personal info</p>

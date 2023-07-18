@@ -5,7 +5,7 @@ const PopularClass = ({ popularClass }) => {
     const { name, image, price, instructorName, instructorImage, students, availableSeats } = popularClass || {}
 
     return (
-        <div className="card relative w-full h-[400px] border-2 border-gray-200 border-opacity-70 rounded-lg overflow-hidden">
+        <div className="card relative w-full h-[472px] md:h-[400px] border-2 border-gray-200 border-opacity-70 rounded-lg overflow-hidden">
             <img src={image} className="lg:h-48 md:h-36 w-full object-cover object-center" alt="" />
 
             <div className={`card-content absolute md:top-36 lg:top-48 left-0 h-full w-full p-6 ${availableSeats === 0 && "bg-rose-400"} bg-gray-100`}>

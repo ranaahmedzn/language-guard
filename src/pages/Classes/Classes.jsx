@@ -16,12 +16,12 @@ const Classes = () => {
     }
 
     return (
-        <section className="my-16">
+        <section className="my-16 px-4">
             <Helmet>
                 <title>Classes - Language Guard</title>
             </Helmet>
             <Container>
-                <div className="text-center w-2/3 mx-auto space-y-4 mb-12">
+                <div className="text-center md:w-2/3 mx-auto space-y-4 mb-12">
                     <h2 className={`text-3xl font-bold ${theme === 'light' ? "text-gray-900" : "text-gray-100"}`}>All the Exciting Classes</h2>
                     <p className={`${theme === 'light' ? "text-gray-900" : "text-gray-400"}`}>Immerse Yourself in All the Exciting Classes and Expand Your Language Skills at Language Guard.</p>
                 </div>

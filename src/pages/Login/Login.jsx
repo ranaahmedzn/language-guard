@@ -44,9 +44,9 @@ const Login = () => {
                 <title>Login - Language Guard</title>
             </Helmet>
             <Container>
-                <div className="py-28">
-                    <div className="mx-auto min-h-[614px] w-2/3 flex rounded-lg shadow-xl overflow-hidden">
-                        <div className="w-1/2 p-10 bg-white flex justify-center items-center flex-col">
+                <div className="py-28 px-4">
+                    <div className="mx-auto min-h-[614px] w-full md:w-2/3 flex flex-col md:flex-row rounded-lg shadow-xl overflow-hidden">
+                        <div className="w-full md:w-1/2 p-6 md:p-10 bg-white flex justify-center items-center flex-col">
                             <div className="w-full">
                                 <h3 className="text-3xl font-bold text-center mb-6">Login</h3>
                                 <SocialLogin></SocialLogin>
@@ -78,7 +78,7 @@ const Login = () => {
                             </div>
                         </div>
 
-                        <div className="w-1/2 bg-red-500 text-white">
+                        <div className="w-full md:w-1/2 py-10 bg-red-500 text-white">
                             <div className="h-full flex flex-col justify-center items-center space-y-4">
                                 <h3 className="text-3xl font-bold">Hello, There!</h3>
                                 <p>Enter your account and start journey with us</p>
