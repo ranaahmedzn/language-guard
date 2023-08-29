@@ -8,7 +8,7 @@ html{
 
 /* custom classes */
 .default{
-    @apply mr-8 border-b-2 border-transparent hover:border-[#FEBC1E]  font-medium transition-all duration-300
+    @apply mr-8 border-b-2 border-transparent hover:border-[#FEBC1E] cursor-pointer font-medium transition-all duration-300
 }
 .primary-btn{
     @apply text-black bg-[#FEBC1E] font-medium rounded-full text-sm px-7
@@ -21,4 +21,8 @@ html{
 }
 .dashboard-menu-item{
     @apply hover:bg-gray-500 font-medium hover:bg-opacity-20 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer transition-all duration-300
+}
+
+.shape-color{
+    @apply bg-[#febb1eb9]
 }

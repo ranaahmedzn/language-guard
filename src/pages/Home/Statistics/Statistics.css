@@ -1,0 +1,19 @@
+.circle-box{
+    background: conic-gradient(orange 0deg, rgba(192, 192, 192, 0.377) 0deg);
+    position: relative;
+    transition: 1s background;
+}
+
+.circle-box::before{
+    content: '';
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    background-color: #122033;
+    border-radius: 50%;
+}
+
+.circle-box .box-content{
+    position: relative;
+    text-align: center;
+}

@@ -126,7 +126,7 @@ const SignUp = () => {
                         <div className="w-full md:w-1/2 bg-red-500 text-white p-10">
                             <div className="h-full flex flex-col justify-center items-center text-center space-y-4">
                                 <h3 className="text-3xl font-bold">Welcome, Back!</h3>
-                                <p>To keep connected with us please login with your personal info</p>
+                                <p>If you already have an account please login with your personal info</p>
                                 <Link to="/login"><button className="outline-btn">Login</button></Link>
                             </div>
                         </div>

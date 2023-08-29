@@ -5,6 +5,7 @@ import Contact from "../Contact/Contact";
 import FeedbackSection from "../FeedbackSection/FeedbackSection";
 import PopularClasses from "../PopularClasses/PopularClasses";
 import PopularInstructors from "../PopularInstructors/PopularInstructors";
+import Statistics from "../Statistics/Statistics";
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
                 <PopularClasses />
                 <PopularInstructors />
             </Container>
+            <Statistics />
             <Contact />
             <FeedbackSection />
         </div>

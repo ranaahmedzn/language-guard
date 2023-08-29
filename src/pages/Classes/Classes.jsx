@@ -16,7 +16,7 @@ const Classes = () => {
     }
 
     return (
-        <section className="my-16 px-4">
+        <section className="mt-16 mb-16 md:mb-24 px-4">
             <Helmet>
                 <title>Classes - Language Guard</title>
             </Helmet>

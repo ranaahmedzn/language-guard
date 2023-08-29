@@ -1,10 +1,10 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import './Navbar.css'
 import Container from "../../Container/Container";
 import logo from "../../../assets/logo.png"
 import { FaEnvelope, FaFacebook, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhone, FaTwitter } from "react-icons/fa";
 import { HiBars3BottomRight, HiXMark } from "react-icons/hi2";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useUserRole from "../../../hooks/useUserRole";
 import { toast } from "react-hot-toast";
@@ -29,8 +29,45 @@ const Navbar = () => {
 
     const [role] = useUserRole()
 
+    // to navigate to the contact section of the homepage
+    const navigate = useNavigate();
+    
+    const navigateToContactSection = () => {
+        navigate('/');
+        setTimeout(() => {
+            const contactSection = document.getElementById('contact');
+            if(contactSection){
+                contactSection.scrollIntoView({ behavior: 'smooth' })
+            }
+        }, 100);
+    };
+
+    const navigateToContactSection2 = () => {
+        setOpen(!open)
+        navigate('/');
+        setTimeout(() => {
+            const contactSection = document.getElementById('contact');
+            if(contactSection){
+                contactSection.scrollIntoView({ behavior: 'smooth' })
+            }
+        }, 100);
+    };
+
+    // prevent the scrolling while the open state is true
+    useEffect(() => {
+        const handleBodyScroll = () => {
+          document.body.style.overflow = open ? 'hidden' : '';
+        };
+    
+        handleBodyScroll();
+    
+        return () => {
+          document.body.style.overflow = '';
+        };
+      }, [open]);
+
     return (
-        <header className={`${theme === 'light' ? 'bg-white text-gray-600' : 'text-gray-200'} shadow`}>
+        <header className={`${theme === 'light' ? 'bg-white text-gray-600' : 'text-gray-200'} shadow ${open ? "overflow-hidden" : ""}`}>
             <Container>
                 <div className="hidden lg:flex gap-5 py-3">
                     <p className="flex items-center gap-2 text-sm">
@@ -65,7 +102,7 @@ const Navbar = () => {
                         <NavLink to="/" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-gray-100"}`}>Home</NavLink>
                         <NavLink to="/instructors" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-gray-100"}`}>Instructors</NavLink>
                         <NavLink to="/classes" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-gray-100"}`}>Classes</NavLink>
-                        <a href="/#contact" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-gray-100"}`}>Contact</a>
+                        <a onClick={navigateToContactSection} className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-gray-100"}`}>Contact</a>
                         {
                             user && (role.isStudent ? (
                                 <NavLink to="/dashboard/mySelectedClasses" className={`default ${theme === 'light' ? "hover:text-gray-900" : "hover:text-gray-100"}`}>Dashboard</NavLink>
@@ -93,17 +130,17 @@ const Navbar = () => {
 
                                 <ul className="py-2 text-sm text-gray-700" aria-labelledby="avatarButton">
                                     {role.isStudent ?
-                                    <li>
-                                        <Link to="/dashboard/mySelectedClasses" className="block px-4 py-2 w-full hover:bg-gray-100">Dashboard</Link>
-                                    </li>
-                                    : role.isAdmin ?
-                                    <li>
-                                        <Link to="/dashboard/manageClasses" className="block px-4 py-2 w-full hover:bg-gray-100">Dashboard</Link>
-                                    </li>
-                                    :
-                                    <li>
-                                        <Link to="/dashboard/addClass" className="block px-4 py-2 w-full hover:bg-gray-100">Dashboard</Link>
-                                    </li>}
+                                        <li>
+                                            <Link to="/dashboard/mySelectedClasses" className="block px-4 py-2 w-full hover:bg-gray-100">Dashboard</Link>
+                                        </li>
+                                        : role.isAdmin ?
+                                            <li>
+                                                <Link to="/dashboard/manageClasses" className="block px-4 py-2 w-full hover:bg-gray-100">Dashboard</Link>
+                                            </li>
+                                            :
+                                            <li>
+                                                <Link to="/dashboard/addClass" className="block px-4 py-2 w-full hover:bg-gray-100">Dashboard</Link>
+                                            </li>}
                                 </ul>
 
                                 <div className="py-1">
@@ -141,7 +178,7 @@ const Navbar = () => {
                         <li><NavLink to="/" className={`default text-gray-300`}>Home</NavLink></li>
                         <li><NavLink to="/instructors" className={`default text-gray-300`}>Instructors</NavLink></li>
                         <li><NavLink to="/classes" className={`default text-gray-300`}>Classes</NavLink></li>
-                        <li><a href="/#contact" className={`default text-gray-300`}>Contact</a></li>
+                        <li><a onClick={navigateToContactSection2} className={`default text-gray-300`}>Contact</a></li>
                         {
                             user && (role.isStudent ? (
                                 <li><NavLink to="/dashboard/mySelectedClasses" className={`default text-gray-300`}>Dashboard</NavLink></li>

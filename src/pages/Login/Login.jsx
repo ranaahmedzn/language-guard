@@ -78,10 +78,10 @@ const Login = () => {
                             </div>
                         </div>
 
-                        <div className="w-full md:w-1/2 py-10 bg-red-500 text-white">
-                            <div className="h-full flex flex-col justify-center items-center space-y-4">
+                        <div className="w-full md:w-1/2 p-10 bg-red-500 text-white">
+                            <div className="h-full flex flex-col justify-center items-center text-center space-y-4">
                                 <h3 className="text-3xl font-bold">Hello, There!</h3>
-                                <p>Enter your account and start journey with us</p>
+                                <p>Don&apos;t have an account? Create your own account and start journey with us</p>
                                 <Link to="/signup"><button className="outline-btn">Sing Up</button></Link>
                             </div>
                         </div>
